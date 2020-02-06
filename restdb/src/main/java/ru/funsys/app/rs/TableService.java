@@ -905,7 +905,7 @@ public class TableService extends Application {
 	 * @return полное имя таблицы
 	 */
 	private String getTable(String name) {
-		if (name.indexOf('.') < 1 && defaultSchema != null) return name + '.' + name;
+		if (name.indexOf('.') < 1 && defaultSchema != null) return defaultSchema + '.' + name;
 		return name; 
 	}
 	
