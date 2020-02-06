@@ -6,7 +6,7 @@ package ru.funsys.app.rs;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- * @author Валерий Лиховских
+ * @author Р’Р°Р»РµСЂРёР№ Р›РёС…РѕРІСЃРєРёС…
  *
  */
 @XmlRootElement
