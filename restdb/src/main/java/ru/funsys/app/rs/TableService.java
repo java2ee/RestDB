@@ -97,7 +97,7 @@ public class TableService extends Application {
 	private ArrayList<String> packages = new ArrayList<String>(); 
 	
 	/**
-	 * Список пакетов поиска классов генераторов SQL запросов 
+	 * Именованный список классов генераторов SQL запросов 
 	 */
 	private HashMap<String, Object> generators = new HashMap<String, Object>(); 
 
@@ -126,7 +126,7 @@ public class TableService extends Application {
 	 * Регистр параметров полей имеет значени. Все имена одного и того же поля в параметрах запроса должны
 	 * иметь одно и тоже написание. Например, st_id и st_ID будут восприняты как имена разных полей.   
 	 * <pre>
-	 * .../data/table/rp.Structure_type?st_id=42&amp;amp;st_id=43
+	 * .../data/table/rp.Structure_type?st_id=42&amp;st_id=43
 	 * </pre>
 	 * 
 	 * <p>
@@ -164,37 +164,37 @@ public class TableService extends Application {
 			builder.append("WHERE ");
 			boolean secondary = false;
 			for (String name : queryParamas.keySet()) {
-            	List<String> values = queryParamas.get(name);
-            	if (secondary) {
-        			builder.append(" AND ");
-            	} else {
-            		secondary = true;
-            	}
-	            if (values.size() > 1) {
-        			builder.append(name).append(" IN (");
-        			boolean valueSecondary = false;
-                	for (Object value : values) {
-                    	if (valueSecondary) {
-                			builder.append(", ");
-                    	} else {
-                    		valueSecondary = true;
-                    	}
-            			builder.append("?");
-    	                parameters.add(value);       	
-    		        }
-        			builder.append(')');
-	            } else {
-	            	String value = values.get(0);
-	            	builder.append(name);
-	            	if (value.indexOf('%') < 0) {
-	            		builder.append(" =");
-	            	} else {
-	            		builder.append(" LIKE");
-	            	}
-	            	builder.append(" ?");
-	                parameters.add(values.get(0));       	
-	            }
-		    }
+            			List<String> values = queryParamas.get(name);
+            			if (secondary) {
+	        			builder.append(" AND ");
+        		    	} else {
+		            		secondary = true;
+		            	}
+	        		if (values.size() > 1) {
+        				builder.append(name).append(" IN (");
+        				boolean valueSecondary = false;
+                			for (Object value : values) {
+                    				if (valueSecondary) {
+                					builder.append(", ");
+                    				} else {
+                    					valueSecondary = true;
+                    				}
+            					builder.append("?");
+    	                			parameters.add(value);       	
+    		        		}
+        				builder.append(')');
+	            		} else {
+	            			String value = values.get(0);
+	            			builder.append(name);
+	            			if (value.indexOf('%') < 0) {
+		            			builder.append(" =");
+		            		} else {
+			            		builder.append(" LIKE");
+		        	    	}
+	        	    		builder.append(" ?");
+	                		parameters.add(values.get(0));       	
+	            		}
+		    	}
 		} else {
 			if (disableAll) {
 				throw new RestException("RST0020E", null, lang);
@@ -233,7 +233,7 @@ public class TableService extends Application {
 	 * 
 	 * <p>
 	 * Пример тела запроса в формате JSON для добавления двух записей 
-	 * 	 * <pre>
+	 * <pre>
 	 * [{"st_id":41,"st_name":"Test41"},{"st_id":42,"st_name":"Test42"}]
 	 * </pre>
 	 * 
@@ -294,27 +294,27 @@ public class TableService extends Application {
 			values.append("(");
 			boolean secondary = false;
 			for (String name : queryParamas.keySet()) {
-            	if (secondary) {
-        			builder.append(", ");
-        			values.append(", ");
-            	} else {
-            		secondary = true;
-            	}
-            	List<String> query = queryParamas.get(name);
-	            if (query.size() > 1) {
-	            	// Для поля {0} определено более одного значения {1}
-	            	throw new RestException("RST0002E", new Object[] {name, query.toString()}, lang);
-	            } else {
-        			builder.append(name);
-        			values.append("?");
-	                parameters.add(query.get(0));       	
-	            }
-		    }
+   		         	if (secondary) {
+        				builder.append(", ");
+        				values.append(", ");
+            			} else {
+            				secondary = true;
+            			}
+            			List<String> query = queryParamas.get(name);
+	            		if (query.size() > 1) {
+	            			// Для поля {0} определено более одного значения {1}
+	            			throw new RestException("RST0002E", new Object[] {name, query.toString()}, lang);
+	            		} else {
+        				builder.append(name);
+        				values.append("?");
+	                		parameters.add(query.get(0));       	
+	            		}
+		    	}
 			values.append(")");
 			insertValues.add(values.toString());
 		} else {
 			if (records == null) {
-            	throw new RestException("RST0004E", null, lang);
+            			throw new RestException("RST0004E", null, lang);
 			} else {
 				boolean first = true; // сформировать список полей по первой записи
 				for (HashMap<String, Object> record : records) {
@@ -322,15 +322,15 @@ public class TableService extends Application {
 					values.append("(");
 					boolean secondary = false; // false - первое поле, true - последующие поля записи 
 					for (String name : record.keySet()) {
-		            	if (secondary) {
-		            		if (first) builder.append(", ");
-		        			values.append(", ");
-		            	} else {
-		            		secondary = true;
-		            	}
-		            	if (first) builder.append(name);
-	        			values.append("?");
-		                parameters.add(record.get(name));       	
+		            			if (secondary) {
+		            				if (first) builder.append(", ");
+		        				values.append(", ");
+		            			} else {
+		            				secondary = true;
+		            			}
+		            			if (first) builder.append(name);
+	        				values.append("?");
+		                		parameters.add(record.get(name));       	
 					}
 					values.append(")");
 					insertValues.add(values.toString());
@@ -340,14 +340,14 @@ public class TableService extends Application {
 		}
 		builder.append(") VALUES ");
 		boolean secondary = false;
-    	for (String values : insertValues) {
-        	if (secondary) {
-    			builder.append(", ");
-        	} else {
-        		secondary = true;
-        	}
+    		for (String values : insertValues) {
+        		if (secondary) {
+    				builder.append(", ");
+        		} else {
+	        		secondary = true;
+        		}
 			builder.append(values);
-    	}
+    		}
 		try {
 			return Response.ok(query(builder.toString(), parameters)).build();
 		} catch (Exception e) {
@@ -418,16 +418,16 @@ public class TableService extends Application {
 				HashMap<String, Object> record = records.get(0);
 				boolean secondary = false;
 				for (String name : record.keySet()) {
-	            	if (secondary) {
-	        			builder.append(", ");
-	            	} else {
-	            		secondary = true;
-	            	}
+	        		    	if (secondary) {
+	        				builder.append(", ");
+	            			} else {
+	            				secondary = true;
+	            			}
 					builder.append(name).append(" = ?");
-                    parameters.add(record.get(name));       	
+		                    parameters.add(record.get(name));       	
 				}
 			} else {
-            	// Для оператора UPDATE не допустимо определять в теле запроса более одной записи.
+            			// Для оператора UPDATE не допустимо определять в теле запроса более одной записи.
 				throw new RestException("RST0010E", null, lang);
 			}
 		}
@@ -437,14 +437,14 @@ public class TableService extends Application {
 			boolean secondaryWhere = false;
 			ArrayList<String> keyWhere = new ArrayList<String>(); // добавленные в условие WHERE значения первичного ключа 
 			for (String name : queryParamas.keySet()) {
-            	String lowerName = name.toLowerCase();
+            			String lowerName = name.toLowerCase();
 				List<String> query = queryParamas.get(name);
-	            switch (query.size()) {
+				switch (query.size()) {
 				case 1:
 					if (key.contains(lowerName)) {
 						if (!keyWhere.contains(lowerName)) {
 							if (secondaryWhere) {
-			        			where.append(" AND ");
+			        				where.append(" AND ");
 							} else {
 								secondaryWhere = true;
 							}
@@ -452,21 +452,21 @@ public class TableService extends Application {
 							parameters.add(query.get(0));
 							keyWhere.add(lowerName);
 						} else {
-			            	// Определение дублирующего значения {0} ключевого поля {1}
+			            			// Определение дублирующего значения {0} ключевого поля {1}
 							throw new RestException("RST0025E", new Object[] {query.toString(), name}, lang);
 						}
 					} else {
 						if (notUsedBody) {
-			            	if (secondary) {
-			        			builder.append(", ");
-			            	} else {
-			            		secondary = true;
-			            	}
+			            			if (secondary) {
+			        				builder.append(", ");
+			            			} else {
+			            				secondary = true;
+			            			}
 							builder.append(name).append(" = ?");
-			                parameters.add(set, query.get(0));
-			                set++;
+			                		parameters.add(set, query.get(0));
+			                		set++;
 						} else {
-			            	// Для поля {0}, не входящее в первичный ключ, недопустимо определять значение {1} при определении тела запроса
+			            			// Для поля {0}, не входящее в первичный ключ, недопустимо определять значение {1} при определении тела запроса
 							throw new RestException("RST0012E", new Object[] {name, query.toString()}, lang);
 						}
 					}
@@ -475,48 +475,48 @@ public class TableService extends Application {
 					if (key.contains(lowerName)) {
 						if (!keyWhere.contains(lowerName)) {
 							if (secondaryWhere) {
-			        			where.append(" AND ");
+			        				where.append(" AND ");
 							} else {
 								secondaryWhere = true;
 							}
 							where.append(name).append(" = ?"); // первое значение поля ключа - текущее значение
-			                parameters.add(query.get(0));
+			                		parameters.add(query.get(0));
 							keyWhere.add(lowerName);
 						} else {
-			            	// Определение дублирующего значения {0} ключевого поля {1}
+			            			// Определение дублирующего значения {0} ключевого поля {1}
 							throw new RestException("RST0025E", new Object[] {query.toString(), name}, lang);
 						}
 						if (notUsedBody) {
 							// второе значение поля ключа - устанавливаемое значение
-			            	if (secondary) {
-			        			builder.append(", ");
-			            	} else {
-			            		secondary = true;
-			            	}
+			            			if (secondary) {
+			        				builder.append(", ");
+			            			} else {
+			            				secondary = true;
+			            			}
 							builder.append(name).append(" = ?");
-			                parameters.add(set, query.get(1));
-			                set++;
+			               			parameters.add(set, query.get(1));
+			                		set++;
 						} else {
-			            	// Для поля {0}, входящее в первичный ключ, указано более одного значения {1} при определении тела запроса
-			            	throw new RestException("RST0011E", new Object[] {name, query.toString()}, lang);
+			            			// Для поля {0}, входящее в первичный ключ, указано более одного значения {1} при определении тела запроса
+			            			throw new RestException("RST0011E", new Object[] {name, query.toString()}, lang);
 						}
 					} else {
-		            	// Для поля {0}, не входящее в первичный ключ, указано более одного значения {1}
-		            	throw new RestException("RST0009E", new Object[] {name, query.toString()}, lang);
+		            			// Для поля {0}, не входящее в первичный ключ, указано более одного значения {1}
+		            			throw new RestException("RST0009E", new Object[] {name, query.toString()}, lang);
 					}
 					break;
 				default:
-	            	// Для поля {0} определено слишком много значений {1}
-	            	throw new RestException("RST0008E", new Object[] {name, query.toString()}, lang);
+	            			// Для поля {0} определено слишком много значений {1}
+	            			throw new RestException("RST0008E", new Object[] {name, query.toString()}, lang);
 				}
-		    }
+		    	}
 			if (key.size() != keyWhere.size()) {
-            	// Число параметров {0} не совпадает с числом полей первичного ключа {1} таблицы {2} 
+            			// Число параметров {0} не совпадает с числом полей первичного ключа {1} таблицы {2} 
 				throw new RestException("RST0016E", new Object[] {keyWhere.size(), key.size(), table}, lang);
 			}
-	    } else {
-        	// Значения полей первичного ключа не определены
-	    	throw new RestException("RST0014E", null, lang);
+		} else {
+        		// Значения полей первичного ключа не определены
+	    		throw new RestException("RST0014E", null, lang);
 		}
 		builder.append(" WHERE ").append(where);
 		BeanResponse beanResponse;
@@ -563,34 +563,32 @@ public class TableService extends Application {
 			if (queryParamas.size() == key.size()) {
 				boolean secondary = false;
 				for (String name : queryParamas.keySet()) {
-	            	List<String> query = queryParamas.get(name);
-		            if (query.size() == 1) {
-    					if (key.contains(name.toLowerCase())) {
-    						if (secondary) {
-    		        			builder.append(" AND ");
-    		            	} else {
-    		            		secondary = true;
-    		            	}
-    						builder.append(name).append(" = ?");
-    						parameters.add(query.get(0));       	
-    					} else {
-    		            	// Поле {0} не входит в первичный ключ таблицы {1}
-    		            	throw new RestException("RST0015E", new Object[] {name, table}, lang);
-    					}	
-		            	
-		            } else {
-		            	// Определено более одного значения для поля {0} первичного ключа 
-		            	throw new RestException("RST0017E", new Object[] {name}, lang);
-		            }
+		            		List<String> query = queryParamas.get(name);
+			            	if (query.size() == 1) {
+    						if (key.contains(name.toLowerCase())) {
+    							if (secondary) {
+    		        					builder.append(" AND ");
+    		            				} else {
+    		            					secondary = true;
+    		            				}
+    							builder.append(name).append(" = ?");
+    							parameters.add(query.get(0));       	
+    						} else {
+    		            				// Поле {0} не входит в первичный ключ таблицы {1}
+    		            				throw new RestException("RST0015E", new Object[] {name, table}, lang);
+    						}	
+			            	} else {
+						// Определено более одного значения для поля {0} первичного ключа 
+			            		throw new RestException("RST0017E", new Object[] {name}, lang);
+		        	    	}
 				}
-				
 			} else {
-            	// Число параметров {0} не совпадает с числом полей первичного ключа {1} таблицы {2} 
-            	throw new RestException("RST0016E", new Object[] {queryParamas.size(), key.size(), table}, lang);
+            			// Число параметров {0} не совпадает с числом полей первичного ключа {1} таблицы {2} 
+            			throw new RestException("RST0016E", new Object[] {queryParamas.size(), key.size(), table}, lang);
 			}
 		} else {
-        	// Значения полей первичного ключа не определены
-        	throw new RestException("RST0014E", null, lang);
+        		// Значения полей первичного ключа не определены
+        		throw new RestException("RST0014E", null, lang);
 		}
 		BeanResponse beanResponse;
 		try {
@@ -603,7 +601,6 @@ public class TableService extends Application {
 			throw new RestException("RST0019E", null, lang, 404);
 		}
 		return Response.ok(beanResponse).build();
-		
 	}
 	
 	/**
