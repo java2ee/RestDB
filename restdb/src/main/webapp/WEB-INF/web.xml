@@ -9,11 +9,11 @@
     <servlet-class>ru.funsys.servlet.http.AvalancheServlet</servlet-class>
     <init-param>
       <param-name>avalanche.config</param-name>
-      <param-value>${catalina.base}/conf/avalanche-gui-config.xml</param-value>
+      <param-value>${catalina.base}/conf/avalanche-restdb-config.xml</param-value>
     </init-param>
     <init-param>
       <param-name>avalanche.log4j</param-name>
-      <param-value>${catalina.base}/conf/avalanche-gui-log4j.xml</param-value>
+      <param-value>${catalina.base}/conf/avalanche-restdb-log4j.xml</param-value>
     </init-param>
     <init-param>
       <param-name>avalanche.jndi</param-name>
