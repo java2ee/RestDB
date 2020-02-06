@@ -5,7 +5,7 @@
 	
 	<!-- Сервисные функции работы с БД, источник данных БД определяется в конфигурации           -->
 	<!-- контекста WEB приложение (для Tomcat см. вложенный элемент <Resource> секции <context>) -->
-	<application class="ru.funsys.avalanche.sql.Database" name="db" description="БД GUI"
+	<application class="ru.funsys.avalanche.sql.Database" name="db" description="Функция доступа к БД"
 	             resource="java:/comp/env/jdbc/db" function="true">
 	</application>          
 
