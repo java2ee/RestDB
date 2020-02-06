@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<avalanche name="RestDB" description="Универсальный REST сервис манипулирования содержимым DB" >
+
+	<locale name="ru.funsys.app.rs.LocaleStrings" />
+	
+	<!-- Сервисные функции работы с БД, источник данных БД определяется в конфигурации           -->
+	<!-- контекста WEB приложение (для Tomcat см. вложенный элемент <Resource> секции <context>) -->
+	<application class="ru.funsys.avalanche.sql.Database" name="db" description="БД GUI"
+	             resource="java:/comp/env/jdbc/db" function="true">
+	</application>          
+
+	<!-- Реализация универсального сервиса                                                       -->
+	<!--     service - признак наличия методов реализации REST сервисов в экземпляре класса      -->
+	<!--     packages - пакеты поиска классов SQL генераторов                                    -->
+	<!--     disableAll - значение "true" запрещает выборку всех записей таблицы                 -->
+	<!--     disableInfo - значение "true" блокирует выдачу метаданных об объектах БД            -->
+	<application class="ru.funsys.app.rs.TableService" name="table-service" service="true"
+	             packages="ru.funsys.app.rs.sql" disableAll="false" disableInfo="false" >
+		<adapter class="ru.funsys.avalanche.sql.Adapter" name="database" uri="db" />
+ 	</application>
+	 
+</avalanche>
