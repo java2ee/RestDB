@@ -29,7 +29,7 @@ import ru.funsys.avalanche.sql.ExecuteSet;
 
 /**
  * 
- * Примеры, описанные в методах, приведены для таблиц rp.structure_type и rp.users  
+ * РџСЂРёРјРµСЂС‹, РѕРїРёСЃР°РЅРЅС‹Рµ РІ РјРµС‚РѕРґР°С…, РїСЂРёРІРµРґРµРЅС‹ РґР»СЏ С‚Р°Р±Р»РёС† rp.structure_type Рё rp.users  
  * <pre>
  * CREATE TABLE rp.structure_type (
  *   st_id INTEGER NOT NULL,
@@ -45,7 +45,7 @@ import ru.funsys.avalanche.sql.ExecuteSet;
 );
  * </pre>
  * 
- * @author Валерий Лиховских
+ * @author Р’Р°Р»РµСЂРёР№ Р›РёС…РѕРІСЃРєРёС…
  * 
  */
 @Path("data")
@@ -58,46 +58,46 @@ public class TableService extends Application {
 	private static final long serialVersionUID = 3169692529838007775L;
 
 	/**
-	 * Параметр класса.
+	 * РџР°СЂР°РјРµС‚СЂ РєР»Р°СЃСЃР°.
 	 */
 	private Adapter database;
 	
 	/**
-	 * Параметр класса.
+	 * РџР°СЂР°РјРµС‚СЂ РєР»Р°СЃСЃР°.
 	 * 
-	 * Флаг, запрещающий выбирать все записи таблицы в методе {@code get}. Значение {@code false} рекомендуется
-	 * использовать в среде разработки. По умолчанию - {@code true}    
+	 * Р¤Р»Р°Рі, Р·Р°РїСЂРµС‰Р°СЋС‰РёР№ РІС‹Р±РёСЂР°С‚СЊ РІСЃРµ Р·Р°РїРёСЃРё С‚Р°Р±Р»РёС†С‹ РІ РјРµС‚РѕРґРµ {@code get}. Р—РЅР°С‡РµРЅРёРµ {@code false} СЂРµРєРѕРјРµРЅРґСѓРµС‚СЃСЏ
+	 * РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РІ СЃСЂРµРґРµ СЂР°Р·СЂР°Р±РѕС‚РєРё. РџРѕ СѓРјРѕР»С‡Р°РЅРёСЋ - {@code true}    
 	 */
 	private boolean disableAll = true;
 	
 	/**
-	 * Параметр класса.
+	 * РџР°СЂР°РјРµС‚СЂ РєР»Р°СЃСЃР°.
 	 * 
-	 * Флаг, запрещающий получать метаинформацию о структуре таблиц. Значение {@code false} рекомендуется
-	 * использовать в среде разработки. По умолчанию - {@code true}  
+	 * Р¤Р»Р°Рі, Р·Р°РїСЂРµС‰Р°СЋС‰РёР№ РїРѕР»СѓС‡Р°С‚СЊ РјРµС‚Р°РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ СЃС‚СЂСѓРєС‚СѓСЂРµ С‚Р°Р±Р»РёС†. Р—РЅР°С‡РµРЅРёРµ {@code false} СЂРµРєРѕРјРµРЅРґСѓРµС‚СЃСЏ
+	 * РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РІ СЃСЂРµРґРµ СЂР°Р·СЂР°Р±РѕС‚РєРё. РџРѕ СѓРјРѕР»С‡Р°РЅРёСЋ - {@code true}  
 	 */
 	private boolean disableInfo = true;
 	
 	/**
-	 * Параметр класса.
+	 * РџР°СЂР°РјРµС‚СЂ РєР»Р°СЃСЃР°.
 	 * 
-	 * Схема таблиц, используемая по умолчанию
+	 * РЎС…РµРјР° С‚Р°Р±Р»РёС†, РёСЃРїРѕР»СЊР·СѓРµРјР°СЏ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
 	 */
 	private String defaultSchema;
 	
 	
 	/**
-	 * Списки полей первичных ключей для таблиц 
+	 * РЎРїРёСЃРєРё РїРѕР»РµР№ РїРµСЂРІРёС‡РЅС‹С… РєР»СЋС‡РµР№ РґР»СЏ С‚Р°Р±Р»РёС† 
 	 */
 	private HashMap<String, ArrayList<String>> primary = new HashMap<String, ArrayList<String>>(); 
 	
 	/**
-	 * Список пакетов поиска классов генераторов SQL запросов 
+	 * РЎРїРёСЃРѕРє РїР°РєРµС‚РѕРІ РїРѕРёСЃРєР° РєР»Р°СЃСЃРѕРІ РіРµРЅРµСЂР°С‚РѕСЂРѕРІ SQL Р·Р°РїСЂРѕСЃРѕРІ 
 	 */
 	private ArrayList<String> packages = new ArrayList<String>(); 
 	
 	/**
-	 * Список пакетов поиска классов генераторов SQL запросов 
+	 * РЎРїРёСЃРѕРє РїР°РєРµС‚РѕРІ РїРѕРёСЃРєР° РєР»Р°СЃСЃРѕРІ РіРµРЅРµСЂР°С‚РѕСЂРѕРІ SQL Р·Р°РїСЂРѕСЃРѕРІ 
 	 */
 	private HashMap<String, Object> generators = new HashMap<String, Object>(); 
 
@@ -109,48 +109,48 @@ public class TableService extends Application {
 	}
 	
 	/**
-	 * Получить одну или более записи таблицы.
+	 * РџРѕР»СѓС‡РёС‚СЊ РѕРґРЅСѓ РёР»Рё Р±РѕР»РµРµ Р·Р°РїРёСЃРё С‚Р°Р±Р»РёС†С‹.
 	 * 
 	 * <p>
-	 * Параметры заголовка HTTP запроса
+	 * РџР°СЂР°РјРµС‚СЂС‹ Р·Р°РіРѕР»РѕРІРєР° HTTP Р·Р°РїСЂРѕСЃР°
 	 * 
 	 * <ul>
-	 * <li>Accept - тип данных ответа, может принимать значения application/json или application/xml
-	 * <li>Content-Language - язык возвращаемых сообщений, по умолчанию ru
+	 * <li>Accept - С‚РёРї РґР°РЅРЅС‹С… РѕС‚РІРµС‚Р°, РјРѕР¶РµС‚ РїСЂРёРЅРёРјР°С‚СЊ Р·РЅР°С‡РµРЅРёСЏ application/json РёР»Рё application/xml
+	 * <li>Content-Language - СЏР·С‹Рє РІРѕР·РІСЂР°С‰Р°РµРјС‹С… СЃРѕРѕР±С‰РµРЅРёР№, РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ ru
 	 * </ul>
 	 * <pre>
-	 * http://host:port/name_context/map_servlet/data/table/{schema.table}?параметры_запроса
+	 * http://host:port/name_context/map_servlet/data/table/{schema.table}?РїР°СЂР°РјРµС‚СЂС‹_Р·Р°РїСЂРѕСЃР°
 	 * </pre>
 	 *
-	 * <p>Пример URL запроса c параметрами для получения двух записей.
-	 * Регистр параметров полей имеет значени. Все имена одного и того же поля в параметрах запроса должны
-	 * иметь одно и тоже написание. Например, st_id и st_ID будут восприняты как имена разных полей.   
+	 * <p>РџСЂРёРјРµСЂ URL Р·Р°РїСЂРѕСЃР° c РїР°СЂР°РјРµС‚СЂР°РјРё РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ РґРІСѓС… Р·Р°РїРёСЃРµР№.
+	 * Р РµРіРёСЃС‚СЂ РїР°СЂР°РјРµС‚СЂРѕРІ РїРѕР»РµР№ РёРјРµРµС‚ Р·РЅР°С‡РµРЅРё. Р’СЃРµ РёРјРµРЅР° РѕРґРЅРѕРіРѕ Рё С‚РѕРіРѕ Р¶Рµ РїРѕР»СЏ РІ РїР°СЂР°РјРµС‚СЂР°С… Р·Р°РїСЂРѕСЃР° РґРѕР»Р¶РЅС‹
+	 * РёРјРµС‚СЊ РѕРґРЅРѕ Рё С‚РѕР¶Рµ РЅР°РїРёСЃР°РЅРёРµ. РќР°РїСЂРёРјРµСЂ, st_id Рё st_ID Р±СѓРґСѓС‚ РІРѕСЃРїСЂРёРЅСЏС‚С‹ РєР°Рє РёРјРµРЅР° СЂР°Р·РЅС‹С… РїРѕР»РµР№.   
 	 * <pre>
 	 * .../data/table/rp.Structure_type?st_id=42&amp;amp;st_id=43
 	 * </pre>
 	 * 
 	 * <p>
-	 * Пример тела ответа в формате JSON с записями, удовлетворяющими параметрам запроса 
+	 * РџСЂРёРјРµСЂ С‚РµР»Р° РѕС‚РІРµС‚Р° РІ С„РѕСЂРјР°С‚Рµ JSON СЃ Р·Р°РїРёСЃСЏРјРё, СѓРґРѕРІР»РµС‚РІРѕСЂСЏСЋС‰РёРјРё РїР°СЂР°РјРµС‚СЂР°Рј Р·Р°РїСЂРѕСЃР° 
 	 * 	 * <pre>
 	 * [{"st_id":42,"st_name":"Test42"},{"st_id":43,"st_name":"Test43"}]
 	 * </pre>
 	 * 
-	 * Пример возвращаемого результата формате XML при ошибке в имени поля в строке параметров запроса.
+	 * РџСЂРёРјРµСЂ РІРѕР·РІСЂР°С‰Р°РµРјРѕРіРѕ СЂРµР·СѓР»СЊС‚Р°С‚Р° С„РѕСЂРјР°С‚Рµ XML РїСЂРё РѕС€РёР±РєРµ РІ РёРјРµРЅРё РїРѕР»СЏ РІ СЃС‚СЂРѕРєРµ РїР°СЂР°РјРµС‚СЂРѕРІ Р·Р°РїСЂРѕСЃР°.
 	 * <pre>
 	 * &lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
 	 * &lt;serverError&gt;
-	 *   &lt;cause&gt;ru.funsys.avalanche.AvalancheRemote: [16616@likhovskikh-vv] SYS0250E При вызове метода "select" возникла ошибка.
-	 * 	Ошибка: "org.postgresql.util.PSQLException - ОШИБКА: столбец "st_iden" не существует
-	 *   Подсказка: Возможно, предполагалась ссылка на столбец "structure_type.st_id". Позиция: 54"
+	 *   &lt;cause&gt;ru.funsys.avalanche.AvalancheRemote: [16616@likhovskikh-vv] SYS0250E РџСЂРё РІС‹Р·РѕРІРµ РјРµС‚РѕРґР° "select" РІРѕР·РЅРёРєР»Р° РѕС€РёР±РєР°.
+	 * 	РћС€РёР±РєР°: "org.postgresql.util.PSQLException - РћРЁРР‘РљРђ: СЃС‚РѕР»Р±РµС† "st_iden" РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚
+	 *   РџРѕРґСЃРєР°Р·РєР°: Р’РѕР·РјРѕР¶РЅРѕ, РїСЂРµРґРїРѕР»Р°РіР°Р»Р°СЃСЊ СЃСЃС‹Р»РєР° РЅР° СЃС‚РѕР»Р±РµС† "structure_type.st_id". РџРѕР·РёС†РёСЏ: 54"
 	 *   &lt;/cause&gt;
 	 *   &lt;code&gt;RST0001E&lt;/code&gt;
-	 *   &lt;message&gt;При выполнении оператора SELECT возникла ошибка.&lt;/message&gt;
+	 *   &lt;message&gt;РџСЂРё РІС‹РїРѕР»РЅРµРЅРёРё РѕРїРµСЂР°С‚РѕСЂР° SELECT РІРѕР·РЅРёРєР»Р° РѕС€РёР±РєР°.&lt;/message&gt;
 	 * &lt;/serverError&gt;
 	 * </pre>
 	 * 
-	 * @param bean параметры запроса
-	 * @return результат выполнения запроса
-	 * @throws RestException возникшая ошибка
+	 * @param bean РїР°СЂР°РјРµС‚СЂС‹ Р·Р°РїСЂРѕСЃР°
+	 * @return СЂРµР·СѓР»СЊС‚Р°С‚ РІС‹РїРѕР»РЅРµРЅРёСЏ Р·Р°РїСЂРѕСЃР°
+	 * @throws RestException РІРѕР·РЅРёРєС€Р°СЏ РѕС€РёР±РєР°
 	 */
 	@GET
 	@Path("table/{object}")
@@ -204,41 +204,41 @@ public class TableService extends Application {
 	}
 
 	/**
-	 * Вставить одну или более записей в таблицу. Если в адресной строке присутсвуют параметры запроса,
-	 * то тело запроса игнорируется. Параметры запроса позволяют вставлять в таблицу одну запись.
-	 * В теле запроса можно определить параметры множества записей для вставки их в таблицу. Все записи
-	 * вставляются в одной транзакции.
+	 * Р’СЃС‚Р°РІРёС‚СЊ РѕРґРЅСѓ РёР»Рё Р±РѕР»РµРµ Р·Р°РїРёСЃРµР№ РІ С‚Р°Р±Р»РёС†Сѓ. Р•СЃР»Рё РІ Р°РґСЂРµСЃРЅРѕР№ СЃС‚СЂРѕРєРµ РїСЂРёСЃСѓС‚СЃРІСѓСЋС‚ РїР°СЂР°РјРµС‚СЂС‹ Р·Р°РїСЂРѕСЃР°,
+	 * С‚Рѕ С‚РµР»Рѕ Р·Р°РїСЂРѕСЃР° РёРіРЅРѕСЂРёСЂСѓРµС‚СЃСЏ. РџР°СЂР°РјРµС‚СЂС‹ Р·Р°РїСЂРѕСЃР° РїРѕР·РІРѕР»СЏСЋС‚ РІСЃС‚Р°РІР»СЏС‚СЊ РІ С‚Р°Р±Р»РёС†Сѓ РѕРґРЅСѓ Р·Р°РїРёСЃСЊ.
+	 * Р’ С‚РµР»Рµ Р·Р°РїСЂРѕСЃР° РјРѕР¶РЅРѕ РѕРїСЂРµРґРµР»РёС‚СЊ РїР°СЂР°РјРµС‚СЂС‹ РјРЅРѕР¶РµСЃС‚РІР° Р·Р°РїРёСЃРµР№ РґР»СЏ РІСЃС‚Р°РІРєРё РёС… РІ С‚Р°Р±Р»РёС†Сѓ. Р’СЃРµ Р·Р°РїРёСЃРё
+	 * РІСЃС‚Р°РІР»СЏСЋС‚СЃСЏ РІ РѕРґРЅРѕР№ С‚СЂР°РЅР·Р°РєС†РёРё.
 	 * 
 	 * <p>
-	 * Параметры заголовка HTTP запроса
+	 * РџР°СЂР°РјРµС‚СЂС‹ Р·Р°РіРѕР»РѕРІРєР° HTTP Р·Р°РїСЂРѕСЃР°
 	 * 
 	 * <ul>
-	 * <li>Accept - тип данных ответа, может принимать значения application/json или application/xml
-	 * <li>Content-Language - язык возвращаемых сообщений, по умолчанию ru
-	 * <li>Content-Type - тип данных тела запроса, может принимать значения application/json или application/xml
+	 * <li>Accept - С‚РёРї РґР°РЅРЅС‹С… РѕС‚РІРµС‚Р°, РјРѕР¶РµС‚ РїСЂРёРЅРёРјР°С‚СЊ Р·РЅР°С‡РµРЅРёСЏ application/json РёР»Рё application/xml
+	 * <li>Content-Language - СЏР·С‹Рє РІРѕР·РІСЂР°С‰Р°РµРјС‹С… СЃРѕРѕР±С‰РµРЅРёР№, РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ ru
+	 * <li>Content-Type - С‚РёРї РґР°РЅРЅС‹С… С‚РµР»Р° Р·Р°РїСЂРѕСЃР°, РјРѕР¶РµС‚ РїСЂРёРЅРёРјР°С‚СЊ Р·РЅР°С‡РµРЅРёСЏ application/json РёР»Рё application/xml
 	 * </ul>
 	 * <pre>
-	 * http://host:port/name_context/map_servlet/data/table/{schema.table}?параметры_запроса
+	 * http://host:port/name_context/map_servlet/data/table/{schema.table}?РїР°СЂР°РјРµС‚СЂС‹_Р·Р°РїСЂРѕСЃР°
 	 * </pre>
 	 *
-	 * <p>Пример URL запроса c параметрами для вставки одной записи
+	 * <p>РџСЂРёРјРµСЂ URL Р·Р°РїСЂРѕСЃР° c РїР°СЂР°РјРµС‚СЂР°РјРё РґР»СЏ РІСЃС‚Р°РІРєРё РѕРґРЅРѕР№ Р·Р°РїРёСЃРё
 	 * <pre>
 	 * .../data/table/rp.Structure_type?st_id=42&amp;st_name=Test42
 	 * </pre>
 	 * 
-	 * <p>Пример URL запроса, отсутсвие параметров запроса требует наличия тела запроса
+	 * <p>РџСЂРёРјРµСЂ URL Р·Р°РїСЂРѕСЃР°, РѕС‚СЃСѓС‚СЃРІРёРµ РїР°СЂР°РјРµС‚СЂРѕРІ Р·Р°РїСЂРѕСЃР° С‚СЂРµР±СѓРµС‚ РЅР°Р»РёС‡РёСЏ С‚РµР»Р° Р·Р°РїСЂРѕСЃР°
 	 * <pre>
 	 * ../data/table/rp.Structure_type
 	 * </pre>
 	 * 
 	 * <p>
-	 * Пример тела запроса в формате JSON для добавления двух записей 
+	 * РџСЂРёРјРµСЂ С‚РµР»Р° Р·Р°РїСЂРѕСЃР° РІ С„РѕСЂРјР°С‚Рµ JSON РґР»СЏ РґРѕР±Р°РІР»РµРЅРёСЏ РґРІСѓС… Р·Р°РїРёСЃРµР№ 
 	 * 	 * <pre>
 	 * [{"st_id":41,"st_name":"Test41"},{"st_id":42,"st_name":"Test42"}]
 	 * </pre>
 	 * 
 	 * <p>
-	 * Пример тела запроса в формате XML для добавления двух записей 
+	 * РџСЂРёРјРµСЂ С‚РµР»Р° Р·Р°РїСЂРѕСЃР° РІ С„РѕСЂРјР°С‚Рµ XML РґР»СЏ РґРѕР±Р°РІР»РµРЅРёСЏ РґРІСѓС… Р·Р°РїРёСЃРµР№ 
 	 * <pre>
 	 * &lt;?xml version="1.0" encoding="UTF-8" standalone="no" ?&gt;
 	 * &lt;rows&gt;
@@ -253,31 +253,31 @@ public class TableService extends Application {
 	 * &lt;/rows&gt;
 	 * </pre>
 	 * 
-	 * @param bean объект передачи параметров запроса HTTP заголовка {@code (@HeaderParam)}, параметров в URI {@code (@PathParam)}
-	 *             и параметров запроса {@code (@QueryParam)} 
-	 * @param records объект передачи параметров вставляемых записей в теле запроса  
+	 * @param bean РѕР±СЉРµРєС‚ РїРµСЂРµРґР°С‡Рё РїР°СЂР°РјРµС‚СЂРѕРІ Р·Р°РїСЂРѕСЃР° HTTP Р·Р°РіРѕР»РѕРІРєР° {@code (@HeaderParam)}, РїР°СЂР°РјРµС‚СЂРѕРІ РІ URI {@code (@PathParam)}
+	 *             Рё РїР°СЂР°РјРµС‚СЂРѕРІ Р·Р°РїСЂРѕСЃР° {@code (@QueryParam)} 
+	 * @param records РѕР±СЉРµРєС‚ РїРµСЂРµРґР°С‡Рё РїР°СЂР°РјРµС‚СЂРѕРІ РІСЃС‚Р°РІР»СЏРµРјС‹С… Р·Р°РїРёСЃРµР№ РІ С‚РµР»Рµ Р·Р°РїСЂРѕСЃР°  
 
-	 * @throws RestException информация о причине ошибки
+	 * @throws RestException РёРЅС„РѕСЂРјР°С†РёСЏ Рѕ РїСЂРёС‡РёРЅРµ РѕС€РёР±РєРё
 	 * 
-	 * <p>Пример ошибки в формате JSON
+	 * <p>РџСЂРёРјРµСЂ РѕС€РёР±РєРё РІ С„РѕСЂРјР°С‚Рµ JSON
 	 * <pre>
-	 * {"message": "При выполнении оператора INSERT возникла ошибка.",
+	 * {"message": "РџСЂРё РІС‹РїРѕР»РЅРµРЅРёРё РѕРїРµСЂР°С‚РѕСЂР° INSERT РІРѕР·РЅРёРєР»Р° РѕС€РёР±РєР°.",
 	 *  "code": "RST0003E",
-	 *  "cause": "ru.funsys.avalanche.sql.SQLException: [28500@likhovskikh-vv] SQL0021E При выполнении запроса произошла ошибка. Номер запроса: 0, запрос: INSERT INTO rp.Structure_type (st_id, st_name) VALUES (?, ?), (?, ?).\r\n\tat ru.funsys.avalanche.sql.Database.execute(Database.java:653)\r\n\tat ru.funsys.avalanche.sql.Database.execute(Database.java:577)\r\n\tat ru.funsys.avalanche.sql.Database.execute(Database.java:565)\r\n\tat ru.transset.app.gui.provider.TableService.add(TableService.java:216)\r\n\tat sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\r\n\tat sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\r\n\tat sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\r\n\tat java.lang.reflect.Method.invoke(Method.java:498)\r\n\tat org.glassfish.jersey.server.model.internal.ResourceMethodInvocationHandlerFactory.lambda$static$0(ResourceMethodInvocationHandlerFactory.java:52)\r\n\tat org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher$1.run(AbstractJavaResourceMethodDispatcher.java:124)\r\n\tat org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher.invoke(AbstractJavaResourceMethodDispatcher.java:167)\r\n\tat org.glassfish.jersey.server.model.internal.JavaResourceMethodDispatcherProvider$VoidOutInvoker.doDispatch(JavaResourceMethodDispatcherProvider.java:159)\r\n\tat org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher.dispatch(AbstractJavaResourceMethodDispatcher.java:79)\r\n\tat org.glassfish.jersey.server.model.ResourceMethodInvoker.invoke(ResourceMethodInvoker.java:469)\r\n\tat org.glassfish.jersey.server.model.ResourceMethodInvoker.apply(ResourceMethodInvoker.java:391)\r\n\tat org.glassfish.jersey.server.model.ResourceMethodInvoker.apply(ResourceMethodInvoker.java:80)\r\n\tat org.glassfish.jersey.server.ServerRuntime$1.run(ServerRuntime.java:253)\r\n\tat org.glassfish.jersey.internal.Errors$1.call(Errors.java:248)\r\n\tat org.glassfish.jersey.internal.Errors$1.call(Errors.java:244)\r\n\tat org.glassfish.jersey.internal.Errors.process(Errors.java:292)\r\n\tat org.glassfish.jersey.internal.Errors.process(Errors.java:274)\r\n\tat org.glassfish.jersey.internal.Errors.process(Errors.java:244)\r\n\tat org.glassfish.jersey.process.internal.RequestScope.runInScope(RequestScope.java:265)\r\n\tat org.glassfish.jersey.server.ServerRuntime.process(ServerRuntime.java:232)\r\n\tat org.glassfish.jersey.server.ApplicationHandler.handle(ApplicationHandler.java:680)\r\n\tat org.glassfish.jersey.servlet.WebComponent.serviceImpl(WebComponent.java:394)\r\n\tat org.glassfish.jersey.servlet.WebComponent.service(WebComponent.java:346)\r\n\tat org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:366)\r\n\tat org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:319)\r\n\tat org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:205)\r\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)\r\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\r\n\tat org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)\r\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\r\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\r\n\tat org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:198)\r\n\tat org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)\r\n\tat org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:493)\r\n\tat org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140)\r\n\tat org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:81)\r\n\tat org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:650)\r\n\tat org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87)\r\n\tat org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)\r\n\tat org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:800)\r\n\tat org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)\r\n\tat org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:806)\r\n\tat org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1498)\r\n\tat org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)\r\n\tat java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)\r\n\tat java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)\r\n\tat org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\nCaused by: org.postgresql.util.PSQLException: ОШИБКА: повторяющееся значение ключа нарушает ограничение уникальности \"st_pk\"\n Подробности: Ключ \"(st_id)=(41)\" уже существует.\r\n\tat org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2505)\r\n\tat org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2241)\r\n\tat org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:310)\r\n\tat org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:447)\r\n\tat org.postgresql.jdbc.PgStatement.execute(PgStatement.java:368)\r\n\tat org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:158)\r\n\tat org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:124)\r\n\tat org.apache.tomcat.dbcp.dbcp2.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:121)\r\n\tat org.apache.tomcat.dbcp.dbcp2.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:121)\r\n\tat ru.funsys.avalanche.sql.Database.execute(Database.java:640)\r\n\t... 51 more\r\n"
+	 *  "cause": "ru.funsys.avalanche.sql.SQLException: [28500@likhovskikh-vv] SQL0021E РџСЂРё РІС‹РїРѕР»РЅРµРЅРёРё Р·Р°РїСЂРѕСЃР° РїСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР°. РќРѕРјРµСЂ Р·Р°РїСЂРѕСЃР°: 0, Р·Р°РїСЂРѕСЃ: INSERT INTO rp.Structure_type (st_id, st_name) VALUES (?, ?), (?, ?).\r\n\tat ru.funsys.avalanche.sql.Database.execute(Database.java:653)\r\n\tat ru.funsys.avalanche.sql.Database.execute(Database.java:577)\r\n\tat ru.funsys.avalanche.sql.Database.execute(Database.java:565)\r\n\tat ru.transset.app.gui.provider.TableService.add(TableService.java:216)\r\n\tat sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\r\n\tat sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\r\n\tat sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\r\n\tat java.lang.reflect.Method.invoke(Method.java:498)\r\n\tat org.glassfish.jersey.server.model.internal.ResourceMethodInvocationHandlerFactory.lambda$static$0(ResourceMethodInvocationHandlerFactory.java:52)\r\n\tat org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher$1.run(AbstractJavaResourceMethodDispatcher.java:124)\r\n\tat org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher.invoke(AbstractJavaResourceMethodDispatcher.java:167)\r\n\tat org.glassfish.jersey.server.model.internal.JavaResourceMethodDispatcherProvider$VoidOutInvoker.doDispatch(JavaResourceMethodDispatcherProvider.java:159)\r\n\tat org.glassfish.jersey.server.model.internal.AbstractJavaResourceMethodDispatcher.dispatch(AbstractJavaResourceMethodDispatcher.java:79)\r\n\tat org.glassfish.jersey.server.model.ResourceMethodInvoker.invoke(ResourceMethodInvoker.java:469)\r\n\tat org.glassfish.jersey.server.model.ResourceMethodInvoker.apply(ResourceMethodInvoker.java:391)\r\n\tat org.glassfish.jersey.server.model.ResourceMethodInvoker.apply(ResourceMethodInvoker.java:80)\r\n\tat org.glassfish.jersey.server.ServerRuntime$1.run(ServerRuntime.java:253)\r\n\tat org.glassfish.jersey.internal.Errors$1.call(Errors.java:248)\r\n\tat org.glassfish.jersey.internal.Errors$1.call(Errors.java:244)\r\n\tat org.glassfish.jersey.internal.Errors.process(Errors.java:292)\r\n\tat org.glassfish.jersey.internal.Errors.process(Errors.java:274)\r\n\tat org.glassfish.jersey.internal.Errors.process(Errors.java:244)\r\n\tat org.glassfish.jersey.process.internal.RequestScope.runInScope(RequestScope.java:265)\r\n\tat org.glassfish.jersey.server.ServerRuntime.process(ServerRuntime.java:232)\r\n\tat org.glassfish.jersey.server.ApplicationHandler.handle(ApplicationHandler.java:680)\r\n\tat org.glassfish.jersey.servlet.WebComponent.serviceImpl(WebComponent.java:394)\r\n\tat org.glassfish.jersey.servlet.WebComponent.service(WebComponent.java:346)\r\n\tat org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:366)\r\n\tat org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:319)\r\n\tat org.glassfish.jersey.servlet.ServletContainer.service(ServletContainer.java:205)\r\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)\r\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\r\n\tat org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)\r\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\r\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\r\n\tat org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:198)\r\n\tat org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)\r\n\tat org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:493)\r\n\tat org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:140)\r\n\tat org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:81)\r\n\tat org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:650)\r\n\tat org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87)\r\n\tat org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)\r\n\tat org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:800)\r\n\tat org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)\r\n\tat org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:806)\r\n\tat org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1498)\r\n\tat org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)\r\n\tat java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)\r\n\tat java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)\r\n\tat org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)\r\n\tat java.lang.Thread.run(Thread.java:748)\r\nCaused by: org.postgresql.util.PSQLException: РћРЁРР‘РљРђ: РїРѕРІС‚РѕСЂСЏСЋС‰РµРµСЃСЏ Р·РЅР°С‡РµРЅРёРµ РєР»СЋС‡Р° РЅР°СЂСѓС€Р°РµС‚ РѕРіСЂР°РЅРёС‡РµРЅРёРµ СѓРЅРёРєР°Р»СЊРЅРѕСЃС‚Рё \"st_pk\"\n РџРѕРґСЂРѕР±РЅРѕСЃС‚Рё: РљР»СЋС‡ \"(st_id)=(41)\" СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚.\r\n\tat org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2505)\r\n\tat org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2241)\r\n\tat org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:310)\r\n\tat org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:447)\r\n\tat org.postgresql.jdbc.PgStatement.execute(PgStatement.java:368)\r\n\tat org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:158)\r\n\tat org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:124)\r\n\tat org.apache.tomcat.dbcp.dbcp2.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:121)\r\n\tat org.apache.tomcat.dbcp.dbcp2.DelegatingPreparedStatement.executeUpdate(DelegatingPreparedStatement.java:121)\r\n\tat ru.funsys.avalanche.sql.Database.execute(Database.java:640)\r\n\t... 51 more\r\n"
 	 * }
 	 * </pre>
 	 * 
-	 * <p>Пример ошибки в формате XML
+	 * <p>РџСЂРёРјРµСЂ РѕС€РёР±РєРё РІ С„РѕСЂРјР°С‚Рµ XML
 	 * <pre>
 	 * &lt;?xml version="1.0" encoding="UTF-8" standalone="yes" ?&gt;
 	 * &lt;serverError&gt;
 	 *   &lt;cause&gt;
-	 *     ru.funsys.avalanche.sql.SQLException: [28500@likhovskikh-vv] SQL0021E При выполнении запроса произошла ошибка. Номер запроса: 0, запрос: INSERT INTO rp.Structure_type (st_id, st_name) VALUES (?, ?), (?, ?).
-	 *     Caused by: org.postgresql.util.PSQLException: ОШИБКА: повторяющееся значение ключа нарушает ограничение уникальности "st_pk"
-	 *                Подробности: Ключ "(st_id)=(41)" уже существует.
+	 *     ru.funsys.avalanche.sql.SQLException: [28500@likhovskikh-vv] SQL0021E РџСЂРё РІС‹РїРѕР»РЅРµРЅРёРё Р·Р°РїСЂРѕСЃР° РїСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР°. РќРѕРјРµСЂ Р·Р°РїСЂРѕСЃР°: 0, Р·Р°РїСЂРѕСЃ: INSERT INTO rp.Structure_type (st_id, st_name) VALUES (?, ?), (?, ?).
+	 *     Caused by: org.postgresql.util.PSQLException: РћРЁРР‘РљРђ: РїРѕРІС‚РѕСЂСЏСЋС‰РµРµСЃСЏ Р·РЅР°С‡РµРЅРёРµ РєР»СЋС‡Р° РЅР°СЂСѓС€Р°РµС‚ РѕРіСЂР°РЅРёС‡РµРЅРёРµ СѓРЅРёРєР°Р»СЊРЅРѕСЃС‚Рё "st_pk"
+	 *                РџРѕРґСЂРѕР±РЅРѕСЃС‚Рё: РљР»СЋС‡ "(st_id)=(41)" СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚.
 	 *   &lt;/cause&gt;
 	 *   &lt;code&gt;RST0003E&lt;/code&gt;
-	 *   &lt;message&gt;При выполнении оператора INSERT возникла ошибка.&lt;/message&gt;
+	 *   &lt;message&gt;РџСЂРё РІС‹РїРѕР»РЅРµРЅРёРё РѕРїРµСЂР°С‚РѕСЂР° INSERT РІРѕР·РЅРёРєР»Р° РѕС€РёР±РєР°.&lt;/message&gt;
 	 * &lt;/serverError&gt;	 * </pre>
 	 */
 	@POST
@@ -302,7 +302,7 @@ public class TableService extends Application {
             	}
             	List<String> query = queryParamas.get(name);
 	            if (query.size() > 1) {
-	            	// Для поля {0} определено более одного значения {1}
+	            	// Р”Р»СЏ РїРѕР»СЏ {0} РѕРїСЂРµРґРµР»РµРЅРѕ Р±РѕР»РµРµ РѕРґРЅРѕРіРѕ Р·РЅР°С‡РµРЅРёСЏ {1}
 	            	throw new RestException("RST0002E", new Object[] {name, query.toString()}, lang);
 	            } else {
         			builder.append(name);
@@ -316,11 +316,11 @@ public class TableService extends Application {
 			if (records == null) {
             	throw new RestException("RST0004E", null, lang);
 			} else {
-				boolean first = true; // сформировать список полей по первой записи
+				boolean first = true; // СЃС„РѕСЂРјРёСЂРѕРІР°С‚СЊ СЃРїРёСЃРѕРє РїРѕР»РµР№ РїРѕ РїРµСЂРІРѕР№ Р·Р°РїРёСЃРё
 				for (HashMap<String, Object> record : records) {
 					StringBuilder values = new StringBuilder();
 					values.append("(");
-					boolean secondary = false; // false - первое поле, true - последующие поля записи 
+					boolean secondary = false; // false - РїРµСЂРІРѕРµ РїРѕР»Рµ, true - РїРѕСЃР»РµРґСѓСЋС‰РёРµ РїРѕР»СЏ Р·Р°РїРёСЃРё 
 					for (String name : record.keySet()) {
 		            	if (secondary) {
 		            		if (first) builder.append(", ");
@@ -356,22 +356,22 @@ public class TableService extends Application {
 	}
 
 	/**
-	 * Модифицировать запись таблицы. В параметрах запроса указываются либо только значения полей первичного
-	 * ключа таблицы и присутсвует тело запроса, либо все значения указываются в строке запроса, при этом, если
-	 * модифицируются поля первичного ключа, то указываются в адресной строке два занчения: первое - текущее
-	 * значение ключевого поля, второе - новое значение.
+	 * РњРѕРґРёС„РёС†РёСЂРѕРІР°С‚СЊ Р·Р°РїРёСЃСЊ С‚Р°Р±Р»РёС†С‹. Р’ РїР°СЂР°РјРµС‚СЂР°С… Р·Р°РїСЂРѕСЃР° СѓРєР°Р·С‹РІР°СЋС‚СЃСЏ Р»РёР±Рѕ С‚РѕР»СЊРєРѕ Р·РЅР°С‡РµРЅРёСЏ РїРѕР»РµР№ РїРµСЂРІРёС‡РЅРѕРіРѕ
+	 * РєР»СЋС‡Р° С‚Р°Р±Р»РёС†С‹ Рё РїСЂРёСЃСѓС‚СЃРІСѓРµС‚ С‚РµР»Рѕ Р·Р°РїСЂРѕСЃР°, Р»РёР±Рѕ РІСЃРµ Р·РЅР°С‡РµРЅРёСЏ СѓРєР°Р·С‹РІР°СЋС‚СЃСЏ РІ СЃС‚СЂРѕРєРµ Р·Р°РїСЂРѕСЃР°, РїСЂРё СЌС‚РѕРј, РµСЃР»Рё
+	 * РјРѕРґРёС„РёС†РёСЂСѓСЋС‚СЃСЏ РїРѕР»СЏ РїРµСЂРІРёС‡РЅРѕРіРѕ РєР»СЋС‡Р°, С‚Рѕ СѓРєР°Р·С‹РІР°СЋС‚СЃСЏ РІ Р°РґСЂРµСЃРЅРѕР№ СЃС‚СЂРѕРєРµ РґРІР° Р·Р°РЅС‡РµРЅРёСЏ: РїРµСЂРІРѕРµ - С‚РµРєСѓС‰РµРµ
+	 * Р·РЅР°С‡РµРЅРёРµ РєР»СЋС‡РµРІРѕРіРѕ РїРѕР»СЏ, РІС‚РѕСЂРѕРµ - РЅРѕРІРѕРµ Р·РЅР°С‡РµРЅРёРµ.
 	 * 
 	 * <p>
-	 * Пример запроса модификации записи с параметрами в адресной строке. Значение 101 ключевого поля st_id будет
-	 * заменено на значение 1  
+	 * РџСЂРёРјРµСЂ Р·Р°РїСЂРѕСЃР° РјРѕРґРёС„РёРєР°С†РёРё Р·Р°РїРёСЃРё СЃ РїР°СЂР°РјРµС‚СЂР°РјРё РІ Р°РґСЂРµСЃРЅРѕР№ СЃС‚СЂРѕРєРµ. Р—РЅР°С‡РµРЅРёРµ 101 РєР»СЋС‡РµРІРѕРіРѕ РїРѕР»СЏ st_id Р±СѓРґРµС‚
+	 * Р·Р°РјРµРЅРµРЅРѕ РЅР° Р·РЅР°С‡РµРЅРёРµ 1  
 	 * <pre>
 	 * .../data/table/rp.structure_type?st_id=101&amp;st_id=1&amp;st_name=Test101
 	 * </pre>
 	 * 
-	 * Пример запроса модификации почтового адреса пользователя, параметры us_name и us_last - поля первичного
-	 * ключа таблицы rp.users, устанавливаемое значение почтового адреса передается в теле запроса   
+	 * РџСЂРёРјРµСЂ Р·Р°РїСЂРѕСЃР° РјРѕРґРёС„РёРєР°С†РёРё РїРѕС‡С‚РѕРІРѕРіРѕ Р°РґСЂРµСЃР° РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ, РїР°СЂР°РјРµС‚СЂС‹ us_name Рё us_last - РїРѕР»СЏ РїРµСЂРІРёС‡РЅРѕРіРѕ
+	 * РєР»СЋС‡Р° С‚Р°Р±Р»РёС†С‹ rp.users, СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРјРѕРµ Р·РЅР°С‡РµРЅРёРµ РїРѕС‡С‚РѕРІРѕРіРѕ Р°РґСЂРµСЃР° РїРµСЂРµРґР°РµС‚СЃСЏ РІ С‚РµР»Рµ Р·Р°РїСЂРѕСЃР°   
 	 * <pre>
-	 * PUT .../data/table/rp.users?us_name=Иван&amp;us_last=Иванов HTTP/1.1
+	 * PUT .../data/table/rp.users?us_name=РРІР°РЅ&amp;us_last=РРІР°РЅРѕРІ HTTP/1.1
 	 * Accept: application/xml
 	 * Content-Language: ru
 	 * Content-Length: 40
@@ -381,19 +381,19 @@ public class TableService extends Application {
 	 * [{"us_email":"I.Iivanov%40transset.ru"}]
 	 * </pre>
 	 * 
-	 * Пример результата при ошибке в формате JSON, если указаны неверные значения ключевых полей.
-	 * Код ответа: 404  
+	 * РџСЂРёРјРµСЂ СЂРµР·СѓР»СЊС‚Р°С‚Р° РїСЂРё РѕС€РёР±РєРµ РІ С„РѕСЂРјР°С‚Рµ JSON, РµСЃР»Рё СѓРєР°Р·Р°РЅС‹ РЅРµРІРµСЂРЅС‹Рµ Р·РЅР°С‡РµРЅРёСЏ РєР»СЋС‡РµРІС‹С… РїРѕР»РµР№.
+	 * РљРѕРґ РѕС‚РІРµС‚Р°: 404  
 	 * <pre>
 	 * {
-	 *   "message": "Запись по полученным значениям ключа не найдена.",
+	 *   "message": "Р—Р°РїРёСЃСЊ РїРѕ РїРѕР»СѓС‡РµРЅРЅС‹Рј Р·РЅР°С‡РµРЅРёСЏРј РєР»СЋС‡Р° РЅРµ РЅР°Р№РґРµРЅР°.",
 	 *   "code": "RST0019E",
 	 *   "cause": null
 	 * }
 	 * </pre>
 	 *  
-	 * @param bean параметры запроса
-	 * @param records уснанавливаемые значениея полей записи
-	 * @throws RestException при возникновении ошибки
+	 * @param bean РїР°СЂР°РјРµС‚СЂС‹ Р·Р°РїСЂРѕСЃР°
+	 * @param records СѓСЃРЅР°РЅР°РІР»РёРІР°РµРјС‹Рµ Р·РЅР°С‡РµРЅРёРµСЏ РїРѕР»РµР№ Р·Р°РїРёСЃРё
+	 * @throws RestException РїСЂРё РІРѕР·РЅРёРєРЅРѕРІРµРЅРёРё РѕС€РёР±РєРё
 	 */
 	@PUT
 	@Path("table/{object}")
@@ -402,7 +402,7 @@ public class TableService extends Application {
 		String lang = bean.getLang();
 		ArrayList<String> key = primary.get(table);
 		if (key == null) {
-			// получить первичный ключ таблицы 
+			// РїРѕР»СѓС‡РёС‚СЊ РїРµСЂРІРёС‡РЅС‹Р№ РєР»СЋС‡ С‚Р°Р±Р»РёС†С‹ 
 			key = getPrimaryKeys(table, lang);
 			primary.put(table, key);
 		}
@@ -427,15 +427,15 @@ public class TableService extends Application {
                     parameters.add(record.get(name));       	
 				}
 			} else {
-            	// Для оператора UPDATE не допустимо определять в теле запроса более одной записи.
+            	// Р”Р»СЏ РѕРїРµСЂР°С‚РѕСЂР° UPDATE РЅРµ РґРѕРїСѓСЃС‚РёРјРѕ РѕРїСЂРµРґРµР»СЏС‚СЊ РІ С‚РµР»Рµ Р·Р°РїСЂРѕСЃР° Р±РѕР»РµРµ РѕРґРЅРѕР№ Р·Р°РїРёСЃРё.
 				throw new RestException("RST0010E", null, lang);
 			}
 		}
 		if (queryParamas.size() > 0) {
-			int set = 0; // позиция устанавливаемых параметров SET
+			int set = 0; // РїРѕР·РёС†РёСЏ СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРјС‹С… РїР°СЂР°РјРµС‚СЂРѕРІ SET
 			boolean secondary = false;
 			boolean secondaryWhere = false;
-			ArrayList<String> keyWhere = new ArrayList<String>(); // добавленные в условие WHERE значения первичного ключа 
+			ArrayList<String> keyWhere = new ArrayList<String>(); // РґРѕР±Р°РІР»РµРЅРЅС‹Рµ РІ СѓСЃР»РѕРІРёРµ WHERE Р·РЅР°С‡РµРЅРёСЏ РїРµСЂРІРёС‡РЅРѕРіРѕ РєР»СЋС‡Р° 
 			for (String name : queryParamas.keySet()) {
             	String lowerName = name.toLowerCase();
 				List<String> query = queryParamas.get(name);
@@ -452,7 +452,7 @@ public class TableService extends Application {
 							parameters.add(query.get(0));
 							keyWhere.add(lowerName);
 						} else {
-			            	// Определение дублирующего значения {0} ключевого поля {1}
+			            	// РћРїСЂРµРґРµР»РµРЅРёРµ РґСѓР±Р»РёСЂСѓСЋС‰РµРіРѕ Р·РЅР°С‡РµРЅРёСЏ {0} РєР»СЋС‡РµРІРѕРіРѕ РїРѕР»СЏ {1}
 							throw new RestException("RST0025E", new Object[] {query.toString(), name}, lang);
 						}
 					} else {
@@ -466,7 +466,7 @@ public class TableService extends Application {
 			                parameters.add(set, query.get(0));
 			                set++;
 						} else {
-			            	// Для поля {0}, не входящее в первичный ключ, недопустимо определять значение {1} при определении тела запроса
+			            	// Р”Р»СЏ РїРѕР»СЏ {0}, РЅРµ РІС…РѕРґСЏС‰РµРµ РІ РїРµСЂРІРёС‡РЅС‹Р№ РєР»СЋС‡, РЅРµРґРѕРїСѓСЃС‚РёРјРѕ РѕРїСЂРµРґРµР»СЏС‚СЊ Р·РЅР°С‡РµРЅРёРµ {1} РїСЂРё РѕРїСЂРµРґРµР»РµРЅРёРё С‚РµР»Р° Р·Р°РїСЂРѕСЃР°
 							throw new RestException("RST0012E", new Object[] {name, query.toString()}, lang);
 						}
 					}
@@ -479,15 +479,15 @@ public class TableService extends Application {
 							} else {
 								secondaryWhere = true;
 							}
-							where.append(name).append(" = ?"); // первое значение поля ключа - текущее значение
+							where.append(name).append(" = ?"); // РїРµСЂРІРѕРµ Р·РЅР°С‡РµРЅРёРµ РїРѕР»СЏ РєР»СЋС‡Р° - С‚РµРєСѓС‰РµРµ Р·РЅР°С‡РµРЅРёРµ
 			                parameters.add(query.get(0));
 							keyWhere.add(lowerName);
 						} else {
-			            	// Определение дублирующего значения {0} ключевого поля {1}
+			            	// РћРїСЂРµРґРµР»РµРЅРёРµ РґСѓР±Р»РёСЂСѓСЋС‰РµРіРѕ Р·РЅР°С‡РµРЅРёСЏ {0} РєР»СЋС‡РµРІРѕРіРѕ РїРѕР»СЏ {1}
 							throw new RestException("RST0025E", new Object[] {query.toString(), name}, lang);
 						}
 						if (notUsedBody) {
-							// второе значение поля ключа - устанавливаемое значение
+							// РІС‚РѕСЂРѕРµ Р·РЅР°С‡РµРЅРёРµ РїРѕР»СЏ РєР»СЋС‡Р° - СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРјРѕРµ Р·РЅР°С‡РµРЅРёРµ
 			            	if (secondary) {
 			        			builder.append(", ");
 			            	} else {
@@ -497,25 +497,25 @@ public class TableService extends Application {
 			                parameters.add(set, query.get(1));
 			                set++;
 						} else {
-			            	// Для поля {0}, входящее в первичный ключ, указано более одного значения {1} при определении тела запроса
+			            	// Р”Р»СЏ РїРѕР»СЏ {0}, РІС…РѕРґСЏС‰РµРµ РІ РїРµСЂРІРёС‡РЅС‹Р№ РєР»СЋС‡, СѓРєР°Р·Р°РЅРѕ Р±РѕР»РµРµ РѕРґРЅРѕРіРѕ Р·РЅР°С‡РµРЅРёСЏ {1} РїСЂРё РѕРїСЂРµРґРµР»РµРЅРёРё С‚РµР»Р° Р·Р°РїСЂРѕСЃР°
 			            	throw new RestException("RST0011E", new Object[] {name, query.toString()}, lang);
 						}
 					} else {
-		            	// Для поля {0}, не входящее в первичный ключ, указано более одного значения {1}
+		            	// Р”Р»СЏ РїРѕР»СЏ {0}, РЅРµ РІС…РѕРґСЏС‰РµРµ РІ РїРµСЂРІРёС‡РЅС‹Р№ РєР»СЋС‡, СѓРєР°Р·Р°РЅРѕ Р±РѕР»РµРµ РѕРґРЅРѕРіРѕ Р·РЅР°С‡РµРЅРёСЏ {1}
 		            	throw new RestException("RST0009E", new Object[] {name, query.toString()}, lang);
 					}
 					break;
 				default:
-	            	// Для поля {0} определено слишком много значений {1}
+	            	// Р”Р»СЏ РїРѕР»СЏ {0} РѕРїСЂРµРґРµР»РµРЅРѕ СЃР»РёС€РєРѕРј РјРЅРѕРіРѕ Р·РЅР°С‡РµРЅРёР№ {1}
 	            	throw new RestException("RST0008E", new Object[] {name, query.toString()}, lang);
 				}
 		    }
 			if (key.size() != keyWhere.size()) {
-            	// Число параметров {0} не совпадает с числом полей первичного ключа {1} таблицы {2} 
+            	// Р§РёСЃР»Рѕ РїР°СЂР°РјРµС‚СЂРѕРІ {0} РЅРµ СЃРѕРІРїР°РґР°РµС‚ СЃ С‡РёСЃР»РѕРј РїРѕР»РµР№ РїРµСЂРІРёС‡РЅРѕРіРѕ РєР»СЋС‡Р° {1} С‚Р°Р±Р»РёС†С‹ {2} 
 				throw new RestException("RST0016E", new Object[] {keyWhere.size(), key.size(), table}, lang);
 			}
 	    } else {
-        	// Значения полей первичного ключа не определены
+        	// Р—РЅР°С‡РµРЅРёСЏ РїРѕР»РµР№ РїРµСЂРІРёС‡РЅРѕРіРѕ РєР»СЋС‡Р° РЅРµ РѕРїСЂРµРґРµР»РµРЅС‹
 	    	throw new RestException("RST0014E", null, lang);
 		}
 		builder.append(" WHERE ").append(where);
@@ -526,23 +526,23 @@ public class TableService extends Application {
 			throw new RestException("RST0013E", null, e, lang);
 		}
 		if (beanResponse.getResult() == 0) {
-			// Запись по полученным значениям ключа не найдена.
+			// Р—Р°РїРёСЃСЊ РїРѕ РїРѕР»СѓС‡РµРЅРЅС‹Рј Р·РЅР°С‡РµРЅРёСЏРј РєР»СЋС‡Р° РЅРµ РЅР°Р№РґРµРЅР°.
 			throw new RestException("RST0019E", null, lang, 404);
 		}
 		return Response.ok(beanResponse).build();
 	}
 	
 	/**
-	 * Удалить запись таблицы. В параметрах запроса указываются значения полей первичного ключа.
+	 * РЈРґР°Р»РёС‚СЊ Р·Р°РїРёСЃСЊ С‚Р°Р±Р»РёС†С‹. Р’ РїР°СЂР°РјРµС‚СЂР°С… Р·Р°РїСЂРѕСЃР° СѓРєР°Р·С‹РІР°СЋС‚СЃСЏ Р·РЅР°С‡РµРЅРёСЏ РїРѕР»РµР№ РїРµСЂРІРёС‡РЅРѕРіРѕ РєР»СЋС‡Р°.
 	 * 
-	 * Удалить запись из таблицы rp.structure_type со значением первичного ключа 43 поля st_id 
+	 * РЈРґР°Р»РёС‚СЊ Р·Р°РїРёСЃСЊ РёР· С‚Р°Р±Р»РёС†С‹ rp.structure_type СЃРѕ Р·РЅР°С‡РµРЅРёРµРј РїРµСЂРІРёС‡РЅРѕРіРѕ РєР»СЋС‡Р° 43 РїРѕР»СЏ st_id 
 	 * <pre>
 	 * .../data/table/rp.structure_type?st_id=43
 	 * </pre>
 	 * 
-	 * @param bean параметры запроса
+	 * @param bean РїР°СЂР°РјРµС‚СЂС‹ Р·Р°РїСЂРѕСЃР°
 	 * 
-	 * @throws RestException ошибка, возникшая при выпрлнении запроса 
+	 * @throws RestException РѕС€РёР±РєР°, РІРѕР·РЅРёРєС€Р°СЏ РїСЂРё РІС‹РїСЂР»РЅРµРЅРёРё Р·Р°РїСЂРѕСЃР° 
 	 */
 	@DELETE
 	@Path("table/{object}")
@@ -551,7 +551,7 @@ public class TableService extends Application {
 		String lang = bean.getLang();
 		ArrayList<String> key = primary.get(table);
 		if (key == null) {
-			// получить первичный ключ таблицы 
+			// РїРѕР»СѓС‡РёС‚СЊ РїРµСЂРІРёС‡РЅС‹Р№ РєР»СЋС‡ С‚Р°Р±Р»РёС†С‹ 
 			key = getPrimaryKeys(table, bean.getLang());
 			primary.put(table, key);
 		}
@@ -574,22 +574,22 @@ public class TableService extends Application {
     						builder.append(name).append(" = ?");
     						parameters.add(query.get(0));       	
     					} else {
-    		            	// Поле {0} не входит в первичный ключ таблицы {1}
+    		            	// РџРѕР»Рµ {0} РЅРµ РІС…РѕРґРёС‚ РІ РїРµСЂРІРёС‡РЅС‹Р№ РєР»СЋС‡ С‚Р°Р±Р»РёС†С‹ {1}
     		            	throw new RestException("RST0015E", new Object[] {name, table}, lang);
     					}	
 		            	
 		            } else {
-		            	// Определено более одного значения для поля {0} первичного ключа 
+		            	// РћРїСЂРµРґРµР»РµРЅРѕ Р±РѕР»РµРµ РѕРґРЅРѕРіРѕ Р·РЅР°С‡РµРЅРёСЏ РґР»СЏ РїРѕР»СЏ {0} РїРµСЂРІРёС‡РЅРѕРіРѕ РєР»СЋС‡Р° 
 		            	throw new RestException("RST0017E", new Object[] {name}, lang);
 		            }
 				}
 				
 			} else {
-            	// Число параметров {0} не совпадает с числом полей первичного ключа {1} таблицы {2} 
+            	// Р§РёСЃР»Рѕ РїР°СЂР°РјРµС‚СЂРѕРІ {0} РЅРµ СЃРѕРІРїР°РґР°РµС‚ СЃ С‡РёСЃР»РѕРј РїРѕР»РµР№ РїРµСЂРІРёС‡РЅРѕРіРѕ РєР»СЋС‡Р° {1} С‚Р°Р±Р»РёС†С‹ {2} 
             	throw new RestException("RST0016E", new Object[] {queryParamas.size(), key.size(), table}, lang);
 			}
 		} else {
-        	// Значения полей первичного ключа не определены
+        	// Р—РЅР°С‡РµРЅРёСЏ РїРѕР»РµР№ РїРµСЂРІРёС‡РЅРѕРіРѕ РєР»СЋС‡Р° РЅРµ РѕРїСЂРµРґРµР»РµРЅС‹
         	throw new RestException("RST0014E", null, lang);
 		}
 		BeanResponse beanResponse;
@@ -599,7 +599,7 @@ public class TableService extends Application {
 			throw new RestException("RST0006E", null, e, lang);
 		}
 		if (beanResponse.getResult() == 0) {
-			// Запись по полученным значениям ключа не найдена.
+			// Р—Р°РїРёСЃСЊ РїРѕ РїРѕР»СѓС‡РµРЅРЅС‹Рј Р·РЅР°С‡РµРЅРёСЏРј РєР»СЋС‡Р° РЅРµ РЅР°Р№РґРµРЅР°.
 			throw new RestException("RST0019E", null, lang, 404);
 		}
 		return Response.ok(beanResponse).build();
@@ -607,25 +607,25 @@ public class TableService extends Application {
 	}
 	
 	/**
-	 * Выполнить произвольный запрос SELECT класса SQL генератора.
+	 * Р’С‹РїРѕР»РЅРёС‚СЊ РїСЂРѕРёР·РІРѕР»СЊРЅС‹Р№ Р·Р°РїСЂРѕСЃ SELECT РєР»Р°СЃСЃР° SQL РіРµРЅРµСЂР°С‚РѕСЂР°.
 	 * 
 	 * <p>
-	 * Параметры заголовка HTTP запроса
+	 * РџР°СЂР°РјРµС‚СЂС‹ Р·Р°РіРѕР»РѕРІРєР° HTTP Р·Р°РїСЂРѕСЃР°
 	 * 
 	 * <ul>
-	 * <li>Accept - тип данных ответа, может принимать значения application/json или application/xml
-	 * <li>Content-Language - язык возвращаемых сообщений, по умолчанию ru
+	 * <li>Accept - С‚РёРї РґР°РЅРЅС‹С… РѕС‚РІРµС‚Р°, РјРѕР¶РµС‚ РїСЂРёРЅРёРјР°С‚СЊ Р·РЅР°С‡РµРЅРёСЏ application/json РёР»Рё application/xml
+	 * <li>Content-Language - СЏР·С‹Рє РІРѕР·РІСЂР°С‰Р°РµРјС‹С… СЃРѕРѕР±С‰РµРЅРёР№, РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ ru
 	 * </ul>
 	 * <pre>
-	 * http://host:port/name_context/map_servlet/data/query/{class.method}?параметры_запроса
+	 * http://host:port/name_context/map_servlet/data/query/{class.method}?РїР°СЂР°РјРµС‚СЂС‹_Р·Р°РїСЂРѕСЃР°
 	 * </pre>
-	 * где:<br>
-	 * class - имя класса без пакета, пакеты поиска класса определяются параметром {@code packages};<br>
-	 * method - имя метода этого класса. 
-	 * <p>Примеры URL запроса c различными параметрами, обрабатываемые в методе.
-	 * Регистр параметров имеет значени.   
+	 * РіРґРµ:<br>
+	 * class - РёРјСЏ РєР»Р°СЃСЃР° Р±РµР· РїР°РєРµС‚Р°, РїР°РєРµС‚С‹ РїРѕРёСЃРєР° РєР»Р°СЃСЃР° РѕРїСЂРµРґРµР»СЏСЋС‚СЃСЏ РїР°СЂР°РјРµС‚СЂРѕРј {@code packages};<br>
+	 * method - РёРјСЏ РјРµС‚РѕРґР° СЌС‚РѕРіРѕ РєР»Р°СЃСЃР°. 
+	 * <p>РџСЂРёРјРµСЂС‹ URL Р·Р°РїСЂРѕСЃР° c СЂР°Р·Р»РёС‡РЅС‹РјРё РїР°СЂР°РјРµС‚СЂР°РјРё, РѕР±СЂР°Р±Р°С‚С‹РІР°РµРјС‹Рµ РІ РјРµС‚РѕРґРµ.
+	 * Р РµРіРёСЃС‚СЂ РїР°СЂР°РјРµС‚СЂРѕРІ РёРјРµРµС‚ Р·РЅР°С‡РµРЅРё.   
 	 * <pre>
-	 * .../data/query/TestQuery.select?us_name=Петр
+	 * .../data/query/TestQuery.select?us_name=РџРµС‚СЂ
 	 * </pre>
 	 * <pre>
 	 * .../data/query/TestQuery.select?page=0
@@ -634,10 +634,10 @@ public class TableService extends Application {
 	 * .../data/query/TestQuery.select?page=0&amp;size=5
 	 * </pre>
 	 * 
-	 * @param bean параметры запроса
-	 * @return результат выполнения запроса
+	 * @param bean РїР°СЂР°РјРµС‚СЂС‹ Р·Р°РїСЂРѕСЃР°
+	 * @return СЂРµР·СѓР»СЊС‚Р°С‚ РІС‹РїРѕР»РЅРµРЅРёСЏ Р·Р°РїСЂРѕСЃР°
 	 * 
-	 * @throws RestException сообщение об ошибке при ее возникновении
+	 * @throws RestException СЃРѕРѕР±С‰РµРЅРёРµ РѕР± РѕС€РёР±РєРµ РїСЂРё РµРµ РІРѕР·РЅРёРєРЅРѕРІРµРЅРёРё
 	 */
 	@GET
 	@Path("query/{object}")
@@ -682,60 +682,60 @@ public class TableService extends Application {
 	}
 	
 	/**
-	 * Получить метаданные об объектах БД. Этот метод может быть полезен в среде разработки для получения
-	 * информации о необходимых параметрах запросов. В промышленных средах работу этого метода можно блокировать
-	 * параметром {@code disableInfo}.  
+	 * РџРѕР»СѓС‡РёС‚СЊ РјРµС‚Р°РґР°РЅРЅС‹Рµ РѕР± РѕР±СЉРµРєС‚Р°С… Р‘Р”. Р­С‚РѕС‚ РјРµС‚РѕРґ РјРѕР¶РµС‚ Р±С‹С‚СЊ РїРѕР»РµР·РµРЅ РІ СЃСЂРµРґРµ СЂР°Р·СЂР°Р±РѕС‚РєРё РґР»СЏ РїРѕР»СѓС‡РµРЅРёСЏ
+	 * РёРЅС„РѕСЂРјР°С†РёРё Рѕ РЅРµРѕР±С…РѕРґРёРјС‹С… РїР°СЂР°РјРµС‚СЂР°С… Р·Р°РїСЂРѕСЃРѕРІ. Р’ РїСЂРѕРјС‹С€Р»РµРЅРЅС‹С… СЃСЂРµРґР°С… СЂР°Р±РѕС‚Сѓ СЌС‚РѕРіРѕ РјРµС‚РѕРґР° РјРѕР¶РЅРѕ Р±Р»РѕРєРёСЂРѕРІР°С‚СЊ
+	 * РїР°СЂР°РјРµС‚СЂРѕРј {@code disableInfo}.  
 	 * 
 	 * <pre>
-	 * http://host:port/name_context/map_servlet/data/info/{method}?параметры_запроса
+	 * http://host:port/name_context/map_servlet/data/info/{method}?РїР°СЂР°РјРµС‚СЂС‹_Р·Р°РїСЂРѕСЃР°
 	 * </pre>
 	 * 
 	 * <p>
-	 * {@code method} имя метода получения метаданных. Имя метода чувствительно к регистру.
+	 * {@code method} РёРјСЏ РјРµС‚РѕРґР° РїРѕР»СѓС‡РµРЅРёСЏ РјРµС‚Р°РґР°РЅРЅС‹С…. РРјСЏ РјРµС‚РѕРґР° С‡СѓРІСЃС‚РІРёС‚РµР»СЊРЅРѕ Рє СЂРµРіРёСЃС‚СЂСѓ.
 	 * 
 	 * <p>
-	 * Поддерживаемые методы:
+	 * РџРѕРґРґРµСЂР¶РёРІР°РµРјС‹Рµ РјРµС‚РѕРґС‹:
 	 * <p>
-	 * <b>getPrimaryKeys</b> - получить поля первичного ключа, параметры метода:
+	 * <b>getPrimaryKeys</b> - РїРѕР»СѓС‡РёС‚СЊ РїРѕР»СЏ РїРµСЂРІРёС‡РЅРѕРіРѕ РєР»СЋС‡Р°, РїР°СЂР°РјРµС‚СЂС‹ РјРµС‚РѕРґР°:
 	 * <ul>
 	 * <li>catalog</li>
 	 * <li>schema</li>
 	 * <li>table</li>
 	 * </ul>
-	 * Пример: получить поля первичного ключа таблицы {@code rp.users}
+	 * РџСЂРёРјРµСЂ: РїРѕР»СѓС‡РёС‚СЊ РїРѕР»СЏ РїРµСЂРІРёС‡РЅРѕРіРѕ РєР»СЋС‡Р° С‚Р°Р±Р»РёС†С‹ {@code rp.users}
 	 * <pre>
 	 * .../data/info/getgetPrimaryKeys?schema=rp&amp;table=users
 	 * </pre>
 	 * 
 	 * <p>
-	 * <b>getColumns</b> - получить поля таблицы, параметры метода:
+	 * <b>getColumns</b> - РїРѕР»СѓС‡РёС‚СЊ РїРѕР»СЏ С‚Р°Р±Р»РёС†С‹, РїР°СЂР°РјРµС‚СЂС‹ РјРµС‚РѕРґР°:
 	 * <ul>
 	 * <li>catalog</li>
 	 * <li>schema</li>
 	 * <li>table</li>
 	 * <li>column</li>
 	 * </ul>
-	 * Пример: получить поля таблицы {@code rp.users}
+	 * РџСЂРёРјРµСЂ: РїРѕР»СѓС‡РёС‚СЊ РїРѕР»СЏ С‚Р°Р±Р»РёС†С‹ {@code rp.users}
 	 * <pre>
 	 * .../data/info/getColumns?schema=rp&amp;table=users
 	 * </pre>
 	 * 
 	 * <p>
-	 * <b>getTables</b> - получить список таблиц, параметры метода:
+	 * <b>getTables</b> - РїРѕР»СѓС‡РёС‚СЊ СЃРїРёСЃРѕРє С‚Р°Р±Р»РёС†, РїР°СЂР°РјРµС‚СЂС‹ РјРµС‚РѕРґР°:
 	 * <ul>
 	 * <li>catalog</li>
 	 * <li>schema</li>
 	 * <li>table</li>
-	 * <li>type - тип таблицы, несколько значений</li>
+	 * <li>type - С‚РёРї С‚Р°Р±Р»РёС†С‹, РЅРµСЃРєРѕР»СЊРєРѕ Р·РЅР°С‡РµРЅРёР№</li>
 	 * </ul>
-	 * Пример: получить таблицы типов {@code TABLE} и {@code VIEW}
+	 * РџСЂРёРјРµСЂ: РїРѕР»СѓС‡РёС‚СЊ С‚Р°Р±Р»РёС†С‹ С‚РёРїРѕРІ {@code TABLE} Рё {@code VIEW}
 	 * <pre>
 	 * .../data/info/getTables?type=TABLE&amp;type=VIEW
 	 * </pre>
 	 * 
-	 * @param bean параметры запроса
-	 * @return результат выполнения запроса
-	 * @throws RestException ошибка выполнения запроса
+	 * @param bean РїР°СЂР°РјРµС‚СЂС‹ Р·Р°РїСЂРѕСЃР°
+	 * @return СЂРµР·СѓР»СЊС‚Р°С‚ РІС‹РїРѕР»РЅРµРЅРёСЏ Р·Р°РїСЂРѕСЃР°
+	 * @throws RestException РѕС€РёР±РєР° РІС‹РїРѕР»РЅРµРЅРёСЏ Р·Р°РїСЂРѕСЃР°
 	 */
 	@GET
 	@Path("info/{object}")
@@ -756,7 +756,7 @@ public class TableService extends Application {
 				result = database.metadata("getPrimaryKeys", catalog, schema, table);
 				ArrayList<String> listFields = new ArrayList<String>();
 				while (result.next()) {
-					listFields.add(result.getString(4)); // имя колонки COLUMN_NAME
+					listFields.add(result.getString(4)); // РёРјСЏ РєРѕР»РѕРЅРєРё COLUMN_NAME
 				}
 				primary.replace(getTable(bean.getObject()), listFields);
 				result.beforeFirst();
@@ -800,27 +800,27 @@ public class TableService extends Application {
 			table = args[1];
 			break;
 		default:
-			// Ошибка определения имени таблицы {0}.
+			// РћС€РёР±РєР° РѕРїСЂРµРґРµР»РµРЅРёСЏ РёРјРµРЅРё С‚Р°Р±Р»РёС†С‹ {0}.
         	throw new RestException("RST0018E", new Object[] {name}, lang);
 		}
 		ResultSet result;	
 		try {
 			result = database.metadata("getPrimaryKeys", null, schema, table);
 			while (result.next()) {
-				list.add(result.getString(4)); // имя колонки COLUMN_NAME
+				list.add(result.getString(4)); // РёРјСЏ РєРѕР»РѕРЅРєРё COLUMN_NAME
 			}
 		} catch (Exception e) {
-			// Ошибка вызова сервиса.
+			// РћС€РёР±РєР° РІС‹Р·РѕРІР° СЃРµСЂРІРёСЃР°.
 			throw new RestException("RST0007E", null, e, lang);
 		}
 		return list;
 	}
 	
 	/**
-	 * Получить экземпляр класса SQL генератора.
+	 * РџРѕР»СѓС‡РёС‚СЊ СЌРєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР° SQL РіРµРЅРµСЂР°С‚РѕСЂР°.
 	 * 
-	 * @param name имя класса
-	 * @return созданный экземпляр класса или {@code null}, если класс не найден
+	 * @param name РёРјСЏ РєР»Р°СЃСЃР°
+	 * @return СЃРѕР·РґР°РЅРЅС‹Р№ СЌРєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР° РёР»Рё {@code null}, РµСЃР»Рё РєР»Р°СЃСЃ РЅРµ РЅР°Р№РґРµРЅ
 	 */
 	private Object getObject(String name, String lang) throws RestException {
 		Object object = generators.get(name);
@@ -831,21 +831,21 @@ public class TableService extends Application {
 				generators.put(name, object);
 				return object;
 			} catch (Exception e) {
-				// Подавить исключение
+				// РџРѕРґР°РІРёС‚СЊ РёСЃРєР»СЋС‡РµРЅРёРµ
 			}
 		}
 		throw new RestException("RST0005E", new Object[] {name}, lang, 404);
 	}
 	
 	/**
-	 * Выполнить SQL запрос SELECT.
+	 * Р’С‹РїРѕР»РЅРёС‚СЊ SQL Р·Р°РїСЂРѕСЃ SELECT.
 	 * 
-	 * @param sql запрос
-	 * @param parameters параметры запроса
-	 * @param lang язык локализации
-	 * @param list результат выполнения запроса
+	 * @param sql Р·Р°РїСЂРѕСЃ
+	 * @param parameters РїР°СЂР°РјРµС‚СЂС‹ Р·Р°РїСЂРѕСЃР°
+	 * @param lang СЏР·С‹Рє Р»РѕРєР°Р»РёР·Р°С†РёРё
+	 * @param list СЂРµР·СѓР»СЊС‚Р°С‚ РІС‹РїРѕР»РЅРµРЅРёСЏ Р·Р°РїСЂРѕСЃР°
 	 * @return  
-	 * @throws RestException возникшая ошибка
+	 * @throws RestException РІРѕР·РЅРёРєС€Р°СЏ РѕС€РёР±РєР°
 	 */
 	private ArrayList<HashMap<String, Object>> query(String sql, ArrayList<Object> parameters, String lang) throws RestException {
 		try {
@@ -857,11 +857,11 @@ public class TableService extends Application {
 	}
 	
 	/**
-	 * Конвертер ResultSet в ArrayList.
+	 * РљРѕРЅРІРµСЂС‚РµСЂ ResultSet РІ ArrayList.
 	 * 
-	 * @param result результат выполнения SQL запроса
-	 * @return результат выполнения запроса
-	 * @throws Exception ошибка выполнения
+	 * @param result СЂРµР·СѓР»СЊС‚Р°С‚ РІС‹РїРѕР»РЅРµРЅРёСЏ SQL Р·Р°РїСЂРѕСЃР°
+	 * @return СЂРµР·СѓР»СЊС‚Р°С‚ РІС‹РїРѕР»РЅРµРЅРёСЏ Р·Р°РїСЂРѕСЃР°
+	 * @throws Exception РѕС€РёР±РєР° РІС‹РїРѕР»РЅРµРЅРёСЏ
 	 */
 	private ArrayList<HashMap<String, Object>> toArrayList(ResultSet result) throws Exception {
 		ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>(); 
@@ -878,12 +878,12 @@ public class TableService extends Application {
 	}
 	
 	/**
-	 * Выполнить SQL запрос INSERT, UPDATE или DELETE.
+	 * Р’С‹РїРѕР»РЅРёС‚СЊ SQL Р·Р°РїСЂРѕСЃ INSERT, UPDATE РёР»Рё DELETE.
 	 * 
-	 * @param sql запрос
-	 * @param parameters устанавливаемые параметры запроса
-	 * @return результат выполнения запроса
-	 * @throws RestException сообщение об ошибке при ее возникновении
+	 * @param sql Р·Р°РїСЂРѕСЃ
+	 * @param parameters СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРјС‹Рµ РїР°СЂР°РјРµС‚СЂС‹ Р·Р°РїСЂРѕСЃР°
+	 * @return СЂРµР·СѓР»СЊС‚Р°С‚ РІС‹РїРѕР»РЅРµРЅРёСЏ Р·Р°РїСЂРѕСЃР°
+	 * @throws RestException СЃРѕРѕР±С‰РµРЅРёРµ РѕР± РѕС€РёР±РєРµ РїСЂРё РµРµ РІРѕР·РЅРёРєРЅРѕРІРµРЅРёРё
 	 */
 	private BeanResponse query(String sql, ArrayList<Object> parameters) throws Exception {
 		String query = sql.substring(0, sql.indexOf(' ')).toUpperCase();
@@ -901,11 +901,11 @@ public class TableService extends Application {
 	}
 	
 	/**
-	 * Получить полное имя таблицы
+	 * РџРѕР»СѓС‡РёС‚СЊ РїРѕР»РЅРѕРµ РёРјСЏ С‚Р°Р±Р»РёС†С‹
 	 * 
-	 * @param name полное или короткое (только имя) таблицы 
+	 * @param name РїРѕР»РЅРѕРµ РёР»Рё РєРѕСЂРѕС‚РєРѕРµ (С‚РѕР»СЊРєРѕ РёРјСЏ) С‚Р°Р±Р»РёС†С‹ 
 	 * 
-	 * @return полное имя таблицы
+	 * @return РїРѕР»РЅРѕРµ РёРјСЏ С‚Р°Р±Р»РёС†С‹
 	 */
 	private String getTable(String name) {
 		if (name.indexOf('.') < 1 && defaultSchema != null) return name + '.' + name;
@@ -913,9 +913,9 @@ public class TableService extends Application {
 	}
 	
 	/**
-	 * Преобразовать составное имя объекта в массив имен.
+	 * РџСЂРµРѕР±СЂР°Р·РѕРІР°С‚СЊ СЃРѕСЃС‚Р°РІРЅРѕРµ РёРјСЏ РѕР±СЉРµРєС‚Р° РІ РјР°СЃСЃРёРІ РёРјРµРЅ.
 	 *  
-	 * @param name составное имя обекта
+	 * @param name СЃРѕСЃС‚Р°РІРЅРѕРµ РёРјСЏ РѕР±РµРєС‚Р°
 	 * @return
 	 */
 	private String[] getNames(String name) {
