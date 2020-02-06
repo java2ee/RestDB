@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd" >
+<properties version="1.0">
+  <comment>Сообщения GUI сервисов</comment>
+
+  <!--  -->
+  <entry key="RST0001E">An error occurred while executing the SELECT statement.</entry>
+  <entry key="RST0002E">More than one value {1} is defined for field {0}.</entry>
+  <entry key="RST0003E">An error occurred while executing the INSERT statement.</entry>
+  <entry key="RST0004E">The list of set values ​​is empty.</entry>
+  <entry key="RST0005E">Generator SQL class named {0} not found.</entry>
+  <entry key="RST0006E">An error occurred while executing the DELETET statement.</entry>
+  <entry key="RST0007E">An error occurred while executing the SQL query.</entry>
+  <entry key="RST0008E">Too many {1} values ​​defined for field {0}.</entry>
+  <entry key="RST0009E">For a field {0} that is not in the primary key, more than one value {1} is specified.</entry>
+  <entry key="RST0010E">It is not permissible for an UPDATE statement to define more than one entry in the request body.</entry>
+  <entry key="RST0011E">For the {0} field in the primary key, more than one value {1} is specified when defining the request body.</entry>
+  <entry key="RST0012E">For a field {0} that is not in the primary key, it is not permissible to determine the value {1} when defining the request body.</entry>
+  <entry key="RST0013E">An error occurred while executing the UPDATE statement.</entry>
+  <entry key="RST0014E">The values ​​of the primary key fields are undefined.</entry>
+  <entry key="RST0015E">Field {0} is not included in the primary key of table {1}.</entry>
+  <entry key="RST0016E">The number of parameters {0} does not match the number of primary key fields {1} of table {2}.</entry>
+  <entry key="RST0017E">More than one value is defined for the {0} primary key field.</entry>
+  <entry key="RST0018E">Error defining table name {0}.</entry>
+  <entry key="RST0019E">A record for the received key values ​​was not found.</entry>
+  <entry key="RST0020E">Selection of all table entries is prohibited</entry>
+  <entry key="RST0021E">SQL query generator class class method name undefined.</entry>
+  <entry key="RST0022E">Metadata request denied.</entry>
+  <entry key="RST0023E">An error occurred while getting metadata {0}.</entry>
+  <entry key="RST0024E">Metadata type not known: {0}</entry>
+  <entry key="RST0025E">Define duplicate value {0} of key field {1}.</entry>
+
+  <entry key="RST0100E">Parameter {0} is undefined.</entry>
+    
+</properties>
+

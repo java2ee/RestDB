@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context docBase="restdb" path="/restdb" reloadable="true" unpackWAR="true">
+
+    <!-- Определение экземпляра класса ru.funsys.avalanche.Avalanche и регистрация этого      -->
+    <!-- экземпляра в JNDI                                                                    -->
+    <Resource auth="Container" factory="org.apache.naming.factory.BeanFactory" name="avalanche/rs"
+              type="ru.funsys.avalanche.Avalanche"/>
+
+    <!-- Определение источника данных WEB приложения                                          -->
+    <Resource name="jdbc/db" auth="Container" type="javax.sql.DataSource"
+              maxTotal="100" maxIdle="30" maxWaitMillis="10000"
+              username="XXXXXX" password="XXXXXX" driverClassName="org.postgresql.Driver"
+              url="jdbc:postgresql://XXXXXXXX:XXXX/XXXXXX"/>
+                          
+ </Context>

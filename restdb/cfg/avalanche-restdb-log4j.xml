@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="info">
+	
+	<Properties>
+		<Property name="base">${sys:catalina.base}</Property>
+	</Properties>
+
+	<Appenders>
+		<RollingFile name="RollingFile" fileName="${base}/logs/avalanche-restdb.log"
+			filePattern="${base}/arcs/avalanche-restdb-%d{yyyy-MM-dd-HH}-%i.log.gz">
+			<PatternLayout pattern="%d %p %c{1.} [%t] %m%n" />
+			<Policies>
+				<SizeBasedTriggeringPolicy size="10MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="100">
+				<!-- Nested conditions: the inner condition is only evaluated on files 
+					for which the outer conditions are true. -->
+				<Delete basePath="${base}/arcs" maxDepth="2">
+					<IfFileName glob="*/avalanche-restdb-*.log.gz">
+						<IfLastModified age="30d">
+							<IfAny>
+								<IfAccumulatedFileSize exceeds="1GB" />
+								<IfAccumulatedFileCount exceeds="30" />
+							</IfAny>
+						</IfLastModified>
+					</IfFileName>
+				</Delete>
+			</DefaultRolloverStrategy>
+		</RollingFile>
+
+	</Appenders>
+
+	<Loggers>
+		<root level="info">
+			<appender-ref ref="RollingFile" />
+		</root>
+	</Loggers>
+
+</Configuration>

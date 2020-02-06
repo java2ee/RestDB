@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
+
+  <display-name>Archetype Created Web Application</display-name>
+
+  <servlet>
+    <display-name>AvalancheServlet</display-name>
+    <servlet-name>AvalancheServlet</servlet-name>
+    <servlet-class>ru.funsys.servlet.http.AvalancheServlet</servlet-class>
+    <init-param>
+      <param-name>avalanche.config</param-name>
+      <param-value>${catalina.base}/conf/avalanche-gui-config.xml</param-value>
+    </init-param>
+    <init-param>
+      <param-name>avalanche.log4j</param-name>
+      <param-value>${catalina.base}/conf/avalanche-gui-log4j.xml</param-value>
+    </init-param>
+    <init-param>
+      <param-name>avalanche.jndi</param-name>
+      <param-value>avalanche/rs</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+    <multipart-config>
+      <!-- 50MB max -->
+      <max-file-size>52428800</max-file-size>
+      <max-request-size>52428800</max-request-size>
+      <file-size-threshold>0</file-size-threshold>
+    </multipart-config>
+  </servlet>
+
+  <servlet>
+    <servlet-name>jersey-serlvet</servlet-name>
+    <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+      <init-param>
+        <param-name>javax.ws.rs.Application</param-name>
+        <param-value>ru.funsys.avalanche.rs.RestApplication</param-value>
+      </init-param>
+      <init-param>
+        <param-name>jersey.config.server.provider.packages</param-name>
+        <param-value>ru.funsys.avalanche.rs.provider;ru.funsys.app.rs.provider</param-value>
+      </init-param>
+      <init-param>
+        <param-name>timestamp.format</param-name>
+        <param-value>yyyy-MM-dd'T'HH:mm:ss.SSSXXX</param-value>
+      </init-param> 
+ <!-- 
+      <init-param>
+        <param-name>avalanche.jndi</param-name>
+        <param-value>javalanche/rs</param-value>
+      </init-param> 
+ -->      
+    <load-on-startup>2</load-on-startup>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>jersey-serlvet</servlet-name>
+    <url-pattern>/rs/*</url-pattern>
+  </servlet-mapping>
+  
+</web-app>
