@@ -13,14 +13,14 @@ import javax.ws.rs.core.UriInfo;
 
 
 /**
- * @author Валерий Лиховских
+ * @author Р’Р°Р»РµСЂРёР№ Р›РёС…РѕРІСЃРєРёС…
  *
  */
 public class BeanRequest {
 
 	private MultivaluedMap<String, String> queryParams;
 	
-    @PathParam("object")
+ 	@PathParam("object")
 	private String object;
 
 	@HeaderParam("Content-Language") @DefaultValue("ru")

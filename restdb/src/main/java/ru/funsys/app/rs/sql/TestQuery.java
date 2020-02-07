@@ -11,29 +11,29 @@ import javax.ws.rs.core.MultivaluedMap;
 import ru.funsys.avalanche.rs.RestException;
 
 /**
- * @author Валерий Лиховских
+ * @author Р’Р°Р»РµСЂРёР№ Р›РёС…РѕРІСЃРєРёС…
  * 
  */
 public class TestQuery {
 
 	/**
-	 * Пример генерации SQL запроса выбора данных
+	 * РџСЂРёРјРµСЂ РіРµРЅРµСЂР°С†РёРё SQL Р·Р°РїСЂРѕСЃР° РІС‹Р±РѕСЂР° РґР°РЅРЅС‹С…
 	 *  
-	 * @param lang язык запроса, полученный из HTTP-заголовка (см. Content-Language)
-	 * @param parameters параметры запроса
-	 * @param list заполняемый в методе массив устанавливаемых параметров при выполнении SQL запрос
-	 * @return сгенерированный SQL запрос
-	 * @throws Exception возможные ошибки контроля полученных параметров
+	 * @param lang СЏР·С‹Рє Р·Р°РїСЂРѕСЃР°, РїРѕР»СѓС‡РµРЅРЅС‹Р№ РёР· HTTP-Р·Р°РіРѕР»РѕРІРєР° (СЃРј. Content-Language)
+	 * @param parameters РїР°СЂР°РјРµС‚СЂС‹ Р·Р°РїСЂРѕСЃР°
+	 * @param list Р·Р°РїРѕР»РЅСЏРµРјС‹Р№ РІ РјРµС‚РѕРґРµ РјР°СЃСЃРёРІ СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРјС‹С… РїР°СЂР°РјРµС‚СЂРѕРІ РїСЂРё РІС‹РїРѕР»РЅРµРЅРёРё SQL Р·Р°РїСЂРѕСЃ
+	 * @return СЃРіРµРЅРµСЂРёСЂРѕРІР°РЅРЅС‹Р№ SQL Р·Р°РїСЂРѕСЃ
+	 * @throws Exception РІРѕР·РјРѕР¶РЅС‹Рµ РѕС€РёР±РєРё РєРѕРЅС‚СЂРѕР»СЏ РїРѕР»СѓС‡РµРЅРЅС‹С… РїР°СЂР°РјРµС‚СЂРѕРІ
 	 */
 	public String select(String lang, MultivaluedMap<String, String> parameters, ArrayList<Object> list) throws Exception {
 		String us_name = parameters.getFirst("us_name");
-		int page; // номер страницы 
+		int page; // РЅРѕРјРµСЂ СЃС‚СЂР°РЅРёС†С‹ 
 		try {
 			page = Integer.parseInt(parameters.getFirst("page"));
 		} catch (Exception e) {
 			page = -1;
 		}
-		int limit; // размер страницы
+		int limit; // СЂР°Р·РјРµСЂ СЃС‚СЂР°РЅРёС†С‹
 		try {
 			limit = Integer.parseInt(parameters.getFirst("size"));
 		} catch (Exception e) {
