@@ -29,6 +29,7 @@
   <entry key="RST0023E">An error occurred while getting metadata {0}.</entry>
   <entry key="RST0024E">Metadata type not known: {0}</entry>
   <entry key="RST0025E">Define duplicate value {0} of key field {1}.</entry>
+  <entry key="RST0026E">The class or its method was not found: {0}.</entry>
 
   <entry key="RST0100E">Parameter {0} is undefined.</entry>
     
