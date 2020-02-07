@@ -20,7 +20,7 @@ public class BeanRequest {
 
 	private MultivaluedMap<String, String> queryParams;
 	
-    @PathParam("object")
+ 	@PathParam("object")
 	private String object;
 
 	@HeaderParam("Content-Language") @DefaultValue("ru")
