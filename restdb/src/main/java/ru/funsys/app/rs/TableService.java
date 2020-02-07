@@ -645,6 +645,7 @@ public class TableService extends Application {
 			throw new RestException("RST0021E", null, lang);
 		}
 		Object generator = getObject(names[0], lang);
+		if (generator == null) throw new RestException("RST0026E", new Object[] {bean.getObject()}, lang, 404);
 		try {
 			ArrayList<Object> parameters = new ArrayList<Object>();
 			Method method = generator.getClass().getMethod(names[1], String.class, MultivaluedMap.class, ArrayList.class);
@@ -666,6 +667,7 @@ public class TableService extends Application {
 			throw new RestException("RST0021E", null, lang);
 		}
 		Object generator = getObject(names[0], lang);
+		if (generator == null) throw new RestException("RST0026E", new Object[] {bean.getObject()}, lang, 404);
 		try {
 			ArrayList<Object> parameters = new ArrayList<Object>();
 			Method method = generator.getClass().getMethod(names[1], String.class, MultivaluedMap.class, ArrayList.class, ArrayList.class);
