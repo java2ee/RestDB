@@ -818,7 +818,7 @@ public class TableService extends Application {
 	 * 
 	 * @param name имя класса
 	 * @return созданный экземпляр класса
-	 * @exception RestExceprion, если класс не найден
+	 * @throws RestExceprion, если класс не найден
 	 */
 	private Object getObject(String name, String lang) throws RestException {
 		Object object = generators.get(name);
