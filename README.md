@@ -9,6 +9,6 @@
 2. Шаблон REST приложения - [avalanche-rs-archetype](https://gitverse.ru/java2ee/avalanche/content/master/demo/rs)
 3. Шаблон WEB приложения - [avalanche-web-archetype](https://gitverse.ru/java2ee/avalanche/content/master/demo/web)
    
-См. документацию [Avalanche - application framework for Java](https://funsys.ru)
+См. документацию [Avalanche - application framework for Java](https://funsys.ru?source=github)
 
 
